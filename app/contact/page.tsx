@@ -1,0 +1,330 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
+export default function ContactPage() {
+  const [scrollY, setScrollY] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Contact form submitted:', formData);
+    setSubmitted(true);
+    
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      });
+    }, 3000);
+  };
+
+  return (
+    <div className="bg-white overflow-hidden">
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
+          />
+          <div 
+            className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
+            style={{ transform: `translate(${-scrollY * 0.1}px, ${scrollY * 0.08}px)` }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+          <div className="inline-block mb-6">
+            <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+              💬 Get in Touch
+            </span>
+          </div>
+          <h1 
+            className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
+            style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+          >
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Us</span>
+          </h1>
+          <p 
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+          >
+            Have questions? We're here to help. Reach out and we'll respond as soon as possible.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Information & Form */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div>
+              <div className="inline-block mb-6">
+                <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+                  📍 Our Location
+                </span>
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-8">
+                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Connect</span>
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: '📍',
+                    title: 'Address',
+                    content: '123 Medical Center Drive\nHealthcare City, HC 12345\nUnited States',
+                    gradient: 'from-blue-400 to-blue-600',
+                  },
+                  {
+                    icon: '📞',
+                    title: 'Phone',
+                    content: 'Main: (555) 123-4567\nEmergency: (555) 123-4568\nFax: (555) 123-4569',
+                    gradient: 'from-green-400 to-green-600',
+                  },
+                  {
+                    icon: '✉️',
+                    title: 'Email',
+                    content: 'General: info@medicareplus.com\nAppointments: appointments@medicareplus.com\nSupport: support@medicareplus.com',
+                    gradient: 'from-purple-400 to-purple-600',
+                  },
+                  {
+                    icon: '🕐',
+                    title: 'Hours',
+                    content: 'Monday - Friday: 8:00 AM - 8:00 PM\nSaturday: 9:00 AM - 5:00 PM\nSunday: 10:00 AM - 4:00 PM\nEmergency: 24/7',
+                    gradient: 'from-orange-400 to-orange-600',
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="group relative"
+                    style={{
+                      animation: `fadeInUp 0.6s ease-out ${index * 100}ms both`,
+                    }}
+                  >
+                    <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
+                      {/* Gradient Background on Hover */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                      
+                      {/* Content */}
+                      <div className="relative z-10 flex items-start space-x-4">
+                        <div className="text-5xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                          {item.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
+                            {item.title}
+                          </h3>
+                          <p className="text-gray-600 group-hover:text-white whitespace-pre-line transition-colors duration-300">
+                            {item.content}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Decorative Element */}
+                      <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Map Placeholder */}
+              <div 
+                className="mt-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-64 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group"
+                style={{
+                  animation: 'fadeInUp 0.6s ease-out 400ms both',
+                }}
+              >
+                <div className="text-center">
+                  <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">🗺️</div>
+                  <p className="text-gray-500 font-semibold">Interactive Map Location</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 transform hover:shadow-3xl transition-all duration-500">
+                <div className="flex items-center mb-8">
+                  <div className="text-4xl mr-4">📝</div>
+                  <h2 className="text-3xl font-bold text-gray-900">Send us a Message</h2>
+                </div>
+                
+                {submitted && (
+                  <div 
+                    className="mb-6 bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 rounded-2xl p-4"
+                    style={{ animation: 'fadeInUp 0.5s ease-out' }}
+                  >
+                    <div className="flex items-center">
+                      <div className="text-4xl mr-3">✅</div>
+                      <div>
+                        <h3 className="text-green-800 font-bold">Message Sent!</h3>
+                        <p className="text-green-700">We'll get back to you soon.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="group">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      placeholder="John Doe"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      placeholder="john.doe@example.com"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Subject *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                    >
+                      <option value="">Select a subject</option>
+                      <option value="general">General Inquiry</option>
+                      <option value="appointment">Appointment Question</option>
+                      <option value="billing">Billing Question</option>
+                      <option value="medical">Medical Records</option>
+                      <option value="feedback">Feedback</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      placeholder="How can we help you?"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-5 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
+                  >
+                    <span className="flex items-center justify-center">
+                      Send Message
+                      <svg className="w-6 h-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency Notice */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 text-center transform hover:scale-105 transition-all duration-300">
+            <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+              <div className="text-6xl animate-pulse">🚨</div>
+              <div className="text-center md:text-left">
+                <h3 className="text-3xl font-bold text-white mb-2">Medical Emergency?</h3>
+                <p className="text-xl text-red-100">Call 911 immediately or visit our Emergency Department open 24/7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full opacity-10 animate-float" />
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full opacity-10 animate-float animation-delay-2000" />
+      </section>
+    </div>
+  );
+}
