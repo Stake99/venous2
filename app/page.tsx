@@ -131,7 +131,6 @@ export default function Home() {
                       className="bg-white rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm bg-opacity-90"
                       style={{
                         animation: `fadeInUp 0.6s ease-out ${item.delay}ms both`,
-                        transform: `rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`,
                       }}
                     >
                       <div className="flex items-center space-x-4">
