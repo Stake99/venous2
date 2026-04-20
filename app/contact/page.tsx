@@ -47,11 +47,11 @@ export default function ContactPage() {
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Parallax */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
             style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
           />
           <div 
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
           <div className="inline-block mb-6">
-            <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+            <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
               💬 Get in Touch
             </span>
           </div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
             className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
             style={{ transform: `translateY(${scrollY * 0.1}px)` }}
           >
-            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Us</span>
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Us</span>
           </h1>
           <p 
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
@@ -84,7 +84,7 @@ export default function ContactPage() {
       {/* Contact Information & Form */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
         </div>
 
@@ -93,12 +93,12 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div>
               <div className="inline-block mb-6">
-                <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
                   📍 Our Location
                 </span>
               </div>
               <h2 className="text-4xl font-bold text-gray-900 mb-8">
-                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Connect</span>
+                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Connect</span>
               </h2>
               
               <div className="space-y-6">
@@ -106,25 +106,25 @@ export default function ContactPage() {
                   {
                     icon: '📍',
                     title: 'Address',
-                    content: '123 Medical Center Drive\nHealthcare City, HC 12345\nUnited States',
-                    gradient: 'from-blue-400 to-blue-600',
+                    content: 'Unit 3, Preller Square\nKellner Street, Westdene\nBloemfontein, 9301\nSouth Africa',
+                    gradient: 'from-gray-800 to-black',
                   },
                   {
                     icon: '📞',
                     title: 'Phone',
-                    content: 'Main: (555) 123-4567\nEmergency: (555) 123-4568\nFax: (555) 123-4569',
+                    content: '+27 51 447 9589',
                     gradient: 'from-green-400 to-green-600',
                   },
                   {
                     icon: '✉️',
                     title: 'Email',
-                    content: 'General: info@medicareplus.com\nAppointments: appointments@medicareplus.com\nSupport: support@medicareplus.com',
+                    content: 'dr.sesingsurg@gmail.com',
                     gradient: 'from-purple-400 to-purple-600',
                   },
                   {
                     icon: '🕐',
                     title: 'Hours',
-                    content: 'Monday - Friday: 8:00 AM - 8:00 PM\nSaturday: 9:00 AM - 5:00 PM\nSunday: 10:00 AM - 4:00 PM\nEmergency: 24/7',
+                    content: 'Monday - Friday: 08:00 - 22:00\nSaturday: 08:00 - 13:00\nSunday: Closed',
                     gradient: 'from-orange-400 to-orange-600',
                   },
                 ].map((item, index) => (
@@ -210,7 +210,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="John Doe"
                     />
                   </div>
@@ -226,7 +226,7 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="john.doe@example.com"
                     />
                   </div>
@@ -241,7 +241,7 @@ export default function ContactPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -256,7 +256,7 @@ export default function ContactPage() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                     >
                       <option value="">Select a subject</option>
                       <option value="general">General Inquiry</option>
@@ -279,14 +279,14 @@ export default function ContactPage() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="How can we help you?"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-5 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
+                    className="group w-full bg-gradient-to-r from-black to-purple-600 text-white px-8 py-5 rounded-full hover:from-gray-900 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
                   >
                     <span className="flex items-center justify-center">
                       Send Message
@@ -300,30 +300,6 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Emergency Notice */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600" />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 text-center transform hover:scale-105 transition-all duration-300">
-            <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
-              <div className="text-6xl animate-pulse">🚨</div>
-              <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-white mb-2">Medical Emergency?</h3>
-                <p className="text-xl text-red-100">Call 911 immediately or visit our Emergency Department open 24/7</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full opacity-10 animate-float" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full opacity-10 animate-float animation-delay-2000" />
       </section>
     </div>
   );

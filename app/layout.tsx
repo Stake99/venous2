@@ -24,8 +24,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "MediCare Plus - Your Trusted Healthcare Partner",
-  description: "Professional medical services with easy online booking. Expert doctors, modern facilities, and compassionate care.",
+  title: "The Venous Lounge - Dr Sesing Surgery & Aesthetics | Bloemfontein",
+  description: "Your Health, our Priority Always. Expert vein treatment and aesthetic services in Bloemfontein, South Africa. All major medical aids accepted.",
 };
 
 export default function RootLayout({

@@ -1,43 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Parallax */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
             style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
           />
           <div 
-            className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
+            className="absolute top-40 right-10 w-72 h-72 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
             style={{ transform: `translate(${-scrollY * 0.1}px, ${scrollY * 0.08}px)` }}
           />
           <div 
-            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"
+            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-gray-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"
             style={{ transform: `translate(${scrollY * 0.05}px, ${-scrollY * 0.1}px)` }}
           />
         </div>
@@ -50,34 +41,34 @@ export default function Home() {
               style={{ transform: `translateY(${scrollY * 0.1}px)` }}
             >
               <div className="inline-block">
-                <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
-                  ✨ Welcome to Modern Healthcare
+                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
+                  ✨ Dr Sesing Surgery & Aesthetics
                 </span>
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                Your Health is Our
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
-                  Priority
+                Your Health, our
+                <span className="block text-black">
+                  Priority Always
                 </span>
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed">
-                Experience world-class healthcare with our team of expert doctors and modern facilities. 
-                Book your appointment online in just a few clicks.
+                Expert vein treatment and aesthetic services in Bloemfontein, South Africa. 
+                All major medical aids accepted. Walk-in, walk-out procedures.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   href="/booking" 
-                  className="group relative bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all duration-300 font-semibold text-center shadow-lg hover:shadow-2xl hover:scale-105 transform"
+                  className="group relative bg-black text-white px-8 py-4 rounded-full hover:bg-gray-900 transition-all duration-300 font-semibold text-center shadow-lg hover:shadow-2xl hover:scale-105 transform"
                 >
                   <span className="relative z-10">Book Appointment</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-black to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
                 <Link 
                   href="/services" 
-                  className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full hover:bg-blue-50 transition-all duration-300 font-semibold text-center shadow-md hover:shadow-xl hover:scale-105 transform"
+                  className="bg-white text-black border-2 border-black px-8 py-4 rounded-full hover:bg-gray-50 transition-all duration-300 font-semibold text-center shadow-md hover:shadow-xl hover:scale-105 transform"
                 >
                   Our Services
                 </Link>
@@ -86,43 +77,65 @@ export default function Home() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
                 {[
-                  { number: '50+', label: 'Expert Doctors' },
-                  { number: '10k+', label: 'Happy Patients' },
-                  { number: '25+', label: 'Years Experience' },
+                  { number: '15+', label: 'Years Experience' },
+                  { number: '1000+', label: 'Happy Patients' },
+                  { number: '100%', label: 'Medical Aid' },
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-blue-600">{stat.number}</div>
+                    <div className="text-3xl font-bold text-black">{stat.number}</div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Content - 3D Card */}
+            {/* Right Content - Doctor's Image with 3D Effect */}
             <div 
               className="relative perspective-1000"
               style={{ transform: `translateY(${-scrollY * 0.15}px)` }}
             >
               <div className="relative">
-                {/* Floating Cards */}
+                {/* Main Doctor Image Card */}
+                <div className="relative z-10 mb-6">
+                  <div className="bg-white rounded-3xl p-4 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm bg-opacity-90">
+                    <div className="relative w-full h-96 rounded-2xl overflow-hidden">
+                      <Image
+                        src="/image/venous.png"
+                        alt="Dr Sesing - The Venous Lounge"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      {/* Doctor Info Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-2xl font-bold mb-1">Dr Sesing</h3>
+                        <p className="text-gray-100">Vein & Aesthetic Specialist</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Info Cards */}
                 <div className="relative z-10 space-y-4">
                   {[
                     {
-                      icon: '🏥',
-                      title: '24/7 Emergency Care',
-                      desc: 'Always here when you need us',
+                      icon: '🩺',
+                      title: 'Vein Specialists',
+                      desc: 'Expert treatment for varicose & spider veins',
                       delay: 0,
                     },
                     {
-                      icon: '👨‍⚕️',
-                      title: 'Expert Doctors',
-                      desc: 'Highly qualified specialists',
+                      icon: '✨',
+                      title: 'Aesthetic Services',
+                      desc: 'Professional cosmetic procedures',
                       delay: 100,
                     },
                     {
-                      icon: '📅',
-                      title: 'Easy Booking',
-                      desc: 'Schedule appointments online',
+                      icon: '🏥',
+                      title: 'Medical Aid Accepted',
+                      desc: 'All major schemes welcome',
                       delay: 200,
                     },
                   ].map((item, index) => (
@@ -139,8 +152,8 @@ export default function Home() {
                           <h3 className="font-semibold text-gray-900 text-lg">{item.title}</h3>
                           <p className="text-gray-600 text-sm">{item.desc}</p>
                         </div>
-                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </div>
@@ -150,8 +163,8 @@ export default function Home() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 rounded-full filter blur-2xl opacity-20 animate-pulse" />
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-300 rounded-full filter blur-2xl opacity-20 animate-pulse animation-delay-1000" />
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-800 rounded-full filter blur-2xl opacity-20 animate-pulse" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gray-300 rounded-full filter blur-2xl opacity-20 animate-pulse animation-delay-1000" />
               </div>
             </div>
           </div>
@@ -159,14 +172,14 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
       </section>
 
       {/* Stats Section with 3D Effect */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         </div>
@@ -174,10 +187,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { number: '50+', label: 'Expert Doctors', icon: '👨‍⚕️' },
-              { number: '10k+', label: 'Happy Patients', icon: '😊' },
-              { number: '25+', label: 'Years Experience', icon: '⭐' },
-              { number: '15+', label: 'Departments', icon: '🏥' },
+              { number: 'Mon-Fri', label: '08:00 - 22:00', icon: '🕐' },
+              { number: 'Saturday', label: '08:00 - 13:00', icon: '📅' },
+              { number: 'Medical Aid', label: 'All Accepted', icon: '💳' },
+              { number: 'Location', label: 'Bloemfontein', icon: '📍' },
             ].map((stat, index) => (
               <div 
                 key={index} 
@@ -187,8 +200,8 @@ export default function Home() {
                 }}
               >
                 <div className="text-5xl mb-2">{stat.icon}</div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">{stat.number}</div>
-                <div className="text-blue-100 font-medium">{stat.label}</div>
+                <div className="text-3xl lg:text-4xl font-bold text-white mb-2">{stat.number}</div>
+                <div className="text-gray-100 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -198,64 +211,64 @@ export default function Home() {
       {/* Services Section with Parallax Cards */}
       <section className="py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-300 rounded-full filter blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Our Services</span>
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Our Services</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              Comprehensive Healthcare Solutions
+              Comprehensive Vein & Aesthetic Care
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Expert medical care across multiple specialties
+              Minimally invasive procedures with expert care
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: 'General Medicine',
-                description: 'Comprehensive primary care for all your health needs',
-                icon: '🩺',
-                gradient: 'from-blue-400 to-blue-600',
-                href: '/services/general-medicine',
+                title: 'Varicose Veins',
+                description: 'Advanced treatment for varicose veins using minimally invasive techniques',
+                icon: '🦵',
+                gradient: 'from-gray-800 to-black',
+                href: '/services/varicose-veins',
               },
               {
-                title: 'Cardiology',
-                description: 'Expert heart care and cardiovascular treatments',
-                icon: '❤️',
-                gradient: 'from-red-400 to-pink-600',
-                href: '/services/cardiology',
-              },
-              {
-                title: 'Pediatrics',
-                description: 'Specialized care for infants, children, and adolescents',
-                icon: '👶',
+                title: 'Spider Veins',
+                description: 'Effective removal of spider and thread veins for clearer skin',
+                icon: '💉',
                 gradient: 'from-purple-400 to-purple-600',
-                href: '/services/pediatrics',
+                href: '/services/spider-veins',
               },
               {
-                title: 'Orthopedics',
-                description: 'Treatment for bones, joints, and musculoskeletal issues',
-                icon: '🦴',
+                title: 'Venous Ulcers',
+                description: 'Specialized treatment for chronic venous ulcers and leg swelling',
+                icon: '🩹',
+                gradient: 'from-red-400 to-pink-600',
+                href: '/services',
+              },
+              {
+                title: 'Aesthetic Services',
+                description: 'Professional cosmetic and aesthetic procedures',
+                icon: '✨',
+                gradient: 'from-yellow-400 to-orange-600',
+                href: '/services/aesthetics',
+              },
+              {
+                title: 'General Surgery',
+                description: 'Minor surgical procedures and consultations',
+                icon: '🏥',
                 gradient: 'from-green-400 to-green-600',
                 href: '/services',
               },
               {
-                title: 'Dermatology',
-                description: 'Skin, hair, and nail care by expert dermatologists',
-                icon: '✨',
-                gradient: 'from-yellow-400 to-orange-600',
-                href: '/services',
-              },
-              {
-                title: 'Laboratory',
-                description: 'Advanced diagnostic testing and pathology services',
-                icon: '🔬',
-                gradient: 'from-cyan-400 to-blue-600',
-                href: '/services',
+                title: 'Consultations',
+                description: 'Expert medical consultations and treatment planning',
+                icon: '👨‍⚕️',
+                gradient: 'from-cyan-400 to-black',
+                href: '/booking',
               },
             ].map((service, index) => (
               <Link
@@ -282,7 +295,7 @@ export default function Home() {
                   </p>
                   
                   {/* Arrow Icon */}
-                  <div className="mt-6 flex items-center text-blue-600 group-hover:text-white transition-colors duration-300">
+                  <div className="mt-6 flex items-center text-black group-hover:text-white transition-colors duration-300">
                     <span className="font-semibold mr-2">Learn More</span>
                     <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -291,7 +304,7 @@ export default function Home() {
                 </div>
 
                 {/* Decorative Circle */}
-                <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-blue-100 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+                <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-gray-100 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
               </Link>
             ))}
           </div>
@@ -299,7 +312,7 @@ export default function Home() {
           <div className="text-center mt-16">
             <Link 
               href="/services" 
-              className="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white px-10 py-4 rounded-full hover:shadow-2xl transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+              className="inline-block bg-gradient-to-r from-black to-gray-500 text-white px-10 py-4 rounded-full hover:shadow-2xl transition-all duration-300 font-semibold text-lg transform hover:scale-105"
             >
               View All Services
             </Link>
@@ -311,39 +324,39 @@ export default function Home() {
       <section className="py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              Excellence in Healthcare
+              Excellence in Vein Care
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We provide exceptional healthcare with a patient-first approach
+              Patient-centered care with a lounge-style medical environment
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: 'Experienced Team',
-                description: 'Board-certified doctors with years of expertise',
-                icon: '🎓',
+                title: 'Expert Specialist',
+                description: 'Dr Sesing - experienced vein and aesthetic specialist',
+                icon: '👨‍⚕️',
                 color: 'blue',
               },
               {
-                title: 'Modern Facilities',
-                description: 'State-of-the-art equipment and technology',
-                icon: '🏢',
+                title: 'Medical Aid',
+                description: 'All major medical aids accepted',
+                icon: '💳',
                 color: 'purple',
               },
               {
-                title: 'Patient Care',
-                description: 'Compassionate and personalized treatment',
-                icon: '💙',
+                title: 'Flexible Hours',
+                description: 'Extended hours for working patients',
+                icon: '🕐',
                 color: 'pink',
               },
               {
-                title: 'Affordable Pricing',
-                description: 'Quality healthcare at competitive rates',
-                icon: '💰',
+                title: 'Walk-in/Walk-out',
+                description: 'Minimally invasive procedures',
+                icon: '🚶',
                 color: 'green',
               },
             ].map((feature, index) => (
@@ -372,7 +385,7 @@ export default function Home() {
 
       {/* CTA Section with Gradient */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         </div>
@@ -385,22 +398,22 @@ export default function Home() {
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">
-            Ready to Experience Better Healthcare?
+            Ready for Expert Vein Care?
           </h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Book your appointment today and experience quality healthcare with our expert medical team.
+          <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Book your consultation today. All major medical aids accepted. Flexible hours to suit your schedule.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/booking" 
-              className="group relative bg-white text-blue-600 px-10 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-2xl transform hover:scale-105"
+              className="group relative bg-white text-black px-10 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-2xl transform hover:scale-105"
             >
               <span className="relative z-10">Book Your Appointment Now</span>
             </Link>
             <Link 
               href="/contact" 
-              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-semibold text-lg transform hover:scale-105"
             >
               Contact Us
             </Link>
@@ -412,64 +425,6 @@ export default function Home() {
         <div className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full opacity-10 animate-float animation-delay-2000" />
         <div className="absolute top-1/2 right-20 w-16 h-16 bg-white rounded-full opacity-10 animate-float animation-delay-4000" />
       </section>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
-
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
     </div>
   );
 }

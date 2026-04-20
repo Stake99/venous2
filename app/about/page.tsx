@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function AboutPage() {
@@ -15,48 +16,41 @@ export default function AboutPage() {
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Parallax */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
             style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
           />
           <div 
-            className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
+            className="absolute top-40 right-10 w-72 h-72 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
             style={{ transform: `translate(${-scrollY * 0.1}px, ${scrollY * 0.08}px)` }}
           />
           <div 
-            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"
+            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-gray-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"
             style={{ transform: `translate(${scrollY * 0.05}px, ${-scrollY * 0.1}px)` }}
           />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="text-center">
-            <div className="inline-block mb-6">
-              <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
-                ✨ Our Story
-              </span>
-            </div>
-            <h1 
-              className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
-              style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-            >
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">MediCare Plus</span>
+          <div className="text-center mb-6">
+            <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6">
+              About <span className="text-black">The Venous Lounge</span>
             </h1>
             <p 
               className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
               style={{ transform: `translateY(${scrollY * 0.15}px)` }}
             >
-              Committed to providing exceptional healthcare services with compassion, expertise, and innovation since 1999.
+              Dr Sesing Surgery & Aesthetics - Specialising in vein and general surgical care with 
+              a strong emphasis on patient safety, quality, and trust.
             </p>
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
@@ -67,19 +61,30 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="text-center mb-16">
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Who We Are</span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
+              The Venous Lounge - <span className="text-black">Dr Sesing Surgery & Aesthetics</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              A Bloemfontein-based medical-aesthetic practice specialising in vein and general surgical care, 
+              with a strong emphasis on patient safety and quality.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
             {[
               {
-                title: 'Our Mission',
-                icon: '🚀',
-                gradient: 'from-blue-500 to-blue-600',
-                description: 'To deliver world-class healthcare services that are accessible, affordable, and patient-centered. We strive to improve the health and well-being of our community through excellence in medical care, education, and research.',
+                title: 'Your Health, our Priority Always',
+                icon: '💙',
+                gradient: 'from-gray-500 to-black',
+                description: 'We prioritise medical-care standards over purely cosmetic or lifestyle-focused services. Our practice is built on trust, reliability, and clinical excellence.',
               },
               {
-                title: 'Our Vision',
-                icon: '👁️',
-                gradient: 'from-purple-500 to-blue-600',
-                description: 'To be the leading healthcare provider recognized for clinical excellence, innovative treatments, and compassionate care. We envision a healthier future where quality healthcare is available to all.',
+                title: 'All Major Medical Aids Accepted',
+                icon: '💳',
+                gradient: 'from-purple-500 to-black',
+                description: 'We work with most South African medical-aid schemes, making quality vein and surgical treatment more accessible to insured patients and their families.',
               },
             ].map((item, index) => (
               <div
@@ -89,7 +94,7 @@ export default function AboutPage() {
                   animation: `fadeInUp 0.6s ease-out ${index * 200}ms both`,
                 }}
               >
-                <div className="relative bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden">
+                <div className="relative bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden border border-gray-100">
                   {/* Gradient Background on Hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
@@ -108,10 +113,47 @@ export default function AboutPage() {
 
                   {/* Decorative Elements */}
                   <div className="absolute -bottom-12 -right-12 w-40 h-40 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full filter blur-2xl opacity-50" />
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gray-100 rounded-full filter blur-2xl opacity-50" />
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Services and Expertise Section */}
+          <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-12 shadow-xl">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Expertise</h3>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Combining general surgical skills with specialized venous treatments to deliver 
+                comprehensive, family-oriented care
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: '🩺',
+                  title: 'Vein Specialists',
+                  description: 'Minimally invasive procedures for varicose and spider veins',
+                },
+                {
+                  icon: '🏥',
+                  title: 'General Surgery',
+                  description: 'Broader surgical expertise for comprehensive patient care',
+                },
+                {
+                  icon: '👨‍👩‍👧‍👦',
+                  title: 'Family-Oriented',
+                  description: 'Reliable services for you and your loved ones',
+                },
+              ].map((item, index) => (
+                <div key={index} className="bg-white rounded-2xl p-6 shadow-md text-center transform hover:-translate-y-2 transition-all duration-300">
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h4>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -119,8 +161,8 @@ export default function AboutPage() {
       {/* Our Story Section */}
       <section className="py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-300 rounded-full filter blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -128,73 +170,76 @@ export default function AboutPage() {
             {/* Left Content */}
             <div>
               <div className="inline-block mb-6">
-                <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
-                  📖 Our Journey
+                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
+                  🏥 Our Practice
                 </span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-                25 Years of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Excellence</span>
+                A Medically Grounded <span className="text-black">Approach</span>
               </h2>
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
                 <p>
-                  Founded in 1999, MediCare Plus began with a simple vision: to provide exceptional healthcare 
-                  that puts patients first. What started as a small clinic with a handful of dedicated doctors 
-                  has grown into a comprehensive medical center serving thousands of patients annually.
+                  The Venous Lounge operates as both a clinical and comfort-oriented environment for vein 
+                  and surgical treatments. Our "lounge" concept combines professional medical care with a 
+                  welcoming atmosphere that puts patients at ease.
                 </p>
                 <p>
-                  Over the past 25 years, we've expanded our services, invested in cutting-edge technology, 
-                  and assembled a team of over 50 expert physicians and healthcare professionals. Our commitment 
-                  to excellence has earned us recognition as one of the region's most trusted healthcare providers.
+                  We focus on trust, reliability, and general-surgical expertise, rather than heavy marketing 
+                  language or flashy aesthetics. This medically grounded image reflects our commitment to 
+                  quality care above all else.
                 </p>
                 <p>
-                  Today, we continue to innovate and evolve, embracing new technologies like online booking 
-                  and telemedicine while maintaining the personal touch and compassionate care that has been 
-                  our hallmark from the beginning.
+                  Our practice is designed for continuity of care - serving whole families and groups, not 
+                  just individual patients. We build long-term relationships based on consistent, reliable 
+                  medical service.
                 </p>
               </div>
             </div>
 
-            {/* Right Content - Timeline */}
-            <div className="relative">
-              <div className="space-y-6">
-                {[
-                  { year: '1999', title: 'Founded', desc: 'Started as a small clinic', icon: '🏥', color: 'blue' },
-                  { year: '2005', title: 'Expansion', desc: 'Grew to full medical center', icon: '📈', color: 'purple' },
-                  { year: '2015', title: 'Innovation', desc: 'Introduced advanced diagnostics', icon: '🔬', color: 'green' },
-                  { year: '2024', title: 'Leadership', desc: 'Leading healthcare provider', icon: '⭐', color: 'yellow' },
-                ].map((milestone, index) => (
-                  <div
-                    key={index}
-                    className="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105"
-                    style={{
-                      animation: `fadeInUp 0.6s ease-out ${index * 150}ms both`,
-                    }}
-                  >
-                    <div className="flex items-center space-x-6">
-                      <div className="text-5xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                        {milestone.icon}
-                      </div>
-                      <div className="flex-1">
-                        <div className="text-3xl font-bold text-blue-600 mb-1">{milestone.year}</div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-1">{milestone.title}</h3>
-                        <p className="text-gray-600">{milestone.desc}</p>
-                      </div>
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
+            {/* Right Content - Key Features */}
+            <div className="space-y-6">
+              {[
+                {
+                  icon: '🏥',
+                  title: 'Clinical Excellence',
+                  description: 'Professional medical standards in a comfortable lounge setting',
+                  color: 'blue',
+                },
+                {
+                  icon: '👨‍⚕️',
+                  title: 'General Surgical Foundation',
+                  description: 'Broader surgical skills supporting specialized vein treatments',
+                  color: 'purple',
+                },
+                {
+                  icon: '💳',
+                  title: 'Medical Aid Friendly',
+                  description: 'Working with most South African medical-aid schemes',
+                  color: 'green',
+                },
+                {
+                  icon: '👨‍👩‍👧‍👦',
+                  title: 'Family-Oriented Care',
+                  description: 'Reliable services for you and your loved ones',
+                  color: 'pink',
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                  style={{
+                    animation: `fadeInUp 0.6s ease-out ${index * 150}ms both`,
+                  }}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="text-5xl">{feature.icon}</div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                      <p className="text-gray-600">{feature.description}</p>
                     </div>
-                    
-                    {/* Decorative Element */}
-                    <div className={`absolute top-0 right-0 w-20 h-20 bg-${milestone.color}-100 rounded-full filter blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
                   </div>
-                ))}
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 rounded-full filter blur-2xl opacity-20 animate-pulse" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-300 rounded-full filter blur-2xl opacity-20 animate-pulse animation-delay-1000" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -204,40 +249,40 @@ export default function AboutPage() {
       <section className="py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Our Values</span>
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Our Values</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              The Principles That <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Guide Us</span>
+              The Principles That <span className="text-black">Guide Us</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Excellence, compassion, and innovation in everything we do
+              Patient safety, trust, and quality care in everything we do
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: 'Excellence',
-                description: 'Committed to the highest standards of medical care and service',
-                icon: '🏆',
-                gradient: 'from-yellow-400 to-orange-500',
-              },
-              {
-                title: 'Compassion',
-                description: 'Treating every patient with empathy, dignity, and respect',
-                icon: '❤️',
-                gradient: 'from-red-400 to-pink-500',
-              },
-              {
-                title: 'Integrity',
-                description: 'Upholding ethical practices and transparency in all we do',
+                title: 'Patient Safety',
+                description: 'Medical-care standards prioritized over cosmetic trends',
                 icon: '🛡️',
-                gradient: 'from-blue-400 to-blue-600',
+                gradient: 'from-gray-800 to-black',
               },
               {
-                title: 'Innovation',
-                description: 'Embracing new technologies and treatment methods',
-                icon: '💡',
+                title: 'Trust & Reliability',
+                description: 'Medically grounded approach, not flashy marketing',
+                icon: '🤝',
+                gradient: 'from-green-400 to-green-600',
+              },
+              {
+                title: 'Quality Care',
+                description: 'Clinical excellence in a comfortable lounge setting',
+                icon: '⭐',
                 gradient: 'from-purple-400 to-purple-600',
+              },
+              {
+                title: 'Accessibility',
+                description: 'Medical aid acceptance and family-oriented services',
+                icon: '💳',
+                gradient: 'from-pink-400 to-pink-600',
               },
             ].map((value, index) => (
               <div
@@ -276,43 +321,49 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Our Team</span>
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Our Team</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Leadership</span>
+              Meet Our <span className="text-black">Dedicated Team</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experienced professionals dedicated to your health and well-being
+              Experienced professionals committed to your health and well-being
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Team Members Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             {[
               {
-                name: 'Dr. Sarah Johnson',
-                role: 'Chief Medical Officer',
-                specialty: 'Internal Medicine',
-                icon: '👩‍⚕️',
-                gradient: 'from-blue-400 to-blue-600',
+                name: 'Dr Mpho Sesing',
+                role: 'General Practitioner',
+                image: '/image/general_practitioner.jpg',
+                description: 'Expert in general medicine and primary care. Dedicated to providing comprehensive healthcare services with a focus on patient wellness and preventive care.',
+                specializations: [
+                  'General Medicine',
+                  'Primary Care',
+                  'Preventive Healthcare',
+                  'Patient Wellness',
+                ],
+                gradient: 'from-gray-800 to-black',
               },
               {
-                name: 'Dr. Michael Chen',
-                role: 'Director of Cardiology',
-                specialty: 'Cardiovascular Medicine',
-                icon: '👨‍⚕️',
+                name: 'Mrs Rebaone Kgware',
+                role: 'Practice Manager',
+                image: '/image/Practice_manager.jpg',
+                description: 'Ensures smooth operations and exceptional patient experience. Coordinates all aspects of practice management to deliver quality care and service.',
+                specializations: [
+                  'Practice Operations',
+                  'Patient Coordination',
+                  'Medical Aid Liaison',
+                  'Quality Assurance',
+                ],
                 gradient: 'from-purple-400 to-purple-600',
-              },
-              {
-                name: 'Dr. Emily Rodriguez',
-                role: 'Head of Pediatrics',
-                specialty: 'Pediatric Care',
-                icon: '👩‍⚕️',
-                gradient: 'from-pink-400 to-pink-600',
               },
             ].map((member, index) => (
               <Link
@@ -320,7 +371,7 @@ export default function AboutPage() {
                 href="/booking"
                 className="group relative block"
                 style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 150}ms both`,
+                  animation: `fadeInUp 0.6s ease-out ${index * 200}ms both`,
                 }}
               >
                 <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden">
@@ -328,25 +379,50 @@ export default function AboutPage() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${member.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
                   {/* Content */}
-                  <div className="relative z-10 text-center">
-                    <div className="text-8xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                      {member.icon}
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
-                      {member.name}
-                    </h3>
-                    <p className="text-blue-600 group-hover:text-white font-medium mb-2 transition-colors duration-300">
-                      {member.role}
-                    </p>
-                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300 mb-4">
-                      {member.specialty}
-                    </p>
+                  <div className="relative z-10">
+                    <div className="grid grid-cols-1 gap-6">
+                      {/* Team Member Image */}
+                      <div className="relative h-80 rounded-2xl overflow-hidden">
+                        <Image
+                          src={member.image}
+                          alt={`${member.name} - ${member.role}`}
+                          fill
+                          className="object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
 
-                    {/* Book Appointment Button */}
-                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                        Book Appointment →
-                      </span>
+                      {/* Team Member Info */}
+                      <div className="text-center">
+                        <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
+                          {member.name}
+                        </h3>
+                        <p className="text-black group-hover:text-white font-medium mb-4 text-lg transition-colors duration-300">
+                          {member.role}
+                        </p>
+                        <p className="text-gray-600 group-hover:text-white transition-colors duration-300 mb-6 leading-relaxed">
+                          {member.description}
+                        </p>
+
+                        {/* Specializations */}
+                        <div className="space-y-2 mb-6">
+                          {member.specializations.map((spec, idx) => (
+                            <div key={idx} className="flex items-center justify-center">
+                              <svg className="w-5 h-5 text-black group-hover:text-white mr-2 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-gray-700 group-hover:text-white transition-colors duration-300">{spec}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Book Appointment Button */}
+                        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <span className="inline-block bg-white bg-opacity-20 text-white px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">
+                            Book Consultation →
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -356,12 +432,45 @@ export default function AboutPage() {
               </Link>
             ))}
           </div>
+
+          {/* Credentials Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '🎓',
+                title: 'Qualified Professionals',
+                description: 'Extensive training and expertise',
+              },
+              {
+                icon: '⭐',
+                title: '15+ Years Experience',
+                description: 'Proven track record of success',
+              },
+              {
+                icon: '💙',
+                title: 'Patient-Centered',
+                description: 'Your health is our priority',
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300"
+                style={{
+                  animation: `fadeInUp 0.6s ease-out ${(index + 1) * 150}ms both`,
+                }}
+              >
+                <div className="text-5xl mb-4">{item.icon}</div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h4>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Stats Section with 3D Effect */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         </div>
@@ -369,19 +478,19 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-              Our Impact in Numbers
+              Why Choose The Venous Lounge
             </h2>
-            <p className="text-xl text-blue-100">
-              Making a difference in healthcare every day
+            <p className="text-xl text-gray-100">
+              Specialized care with a commitment to excellence
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { number: '50+', label: 'Expert Doctors', icon: '👨‍⚕️' },
-              { number: '10k+', label: 'Happy Patients', icon: '😊' },
-              { number: '25+', label: 'Years Experience', icon: '⭐' },
-              { number: '15+', label: 'Departments', icon: '🏥' },
+              { number: '15+', label: 'Years Experience', icon: '⭐' },
+              { number: '1000+', label: 'Successful Procedures', icon: '✅' },
+              { number: '6 Days', label: 'Open Weekly', icon: '📅' },
+              { number: 'All', label: 'Major Medical Aids', icon: '💳' },
             ].map((stat, index) => (
               <div 
                 key={index} 
@@ -393,7 +502,7 @@ export default function AboutPage() {
                 <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 hover:bg-opacity-20 transition-all duration-300">
                   <div className="text-6xl mb-4">{stat.icon}</div>
                   <div className="text-5xl lg:text-6xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-blue-100 font-medium text-lg">{stat.label}</div>
+                  <div className="text-gray-100 font-medium text-lg">{stat.label}</div>
                 </div>
               </div>
             ))}

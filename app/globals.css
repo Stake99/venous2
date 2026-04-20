@@ -2,11 +2,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1e293b;
-  --primary-blue: #2563eb;
-  --primary-blue-dark: #1e40af;
-  --light-blue: #dbeafe;
-  --accent-blue: #3b82f6;
+  --foreground: #000000;
+  --primary-black: #000000;
+  --primary-gray: #1a1a1a;
+  --light-gray: #f5f5f5;
+  --accent-gray: #333333;
   --font-body: var(--font-poppins);
   --font-heading: var(--font-playfair);
   --font-sans: var(--font-inter);
@@ -15,10 +15,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary-blue);
-  --color-primary-dark: var(--primary-blue-dark);
-  --color-light-blue: var(--light-blue);
-  --color-accent: var(--accent-blue);
+  --color-primary: var(--primary-black);
+  --color-primary-dark: var(--primary-gray);
+  --color-light-gray: var(--light-gray);
+  --color-accent: var(--accent-gray);
   --font-sans: var(--font-inter);
   --font-body: var(--font-poppins);
   --font-heading: var(--font-playfair);
@@ -131,12 +131,12 @@ button, a, input, select, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
+  background: #000000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e40af;
+  background: #333333;
 }
 
 /* Glass morphism effect */

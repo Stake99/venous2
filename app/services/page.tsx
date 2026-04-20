@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function ServicesPage() {
@@ -14,159 +15,93 @@ export default function ServicesPage() {
 
   const services = [
     {
-      title: 'General Medicine',
-      description: 'Comprehensive primary care for all your health needs including routine check-ups, preventive care, and treatment of common illnesses.',
+      title: 'Varicose Veins',
+      description: 'Advanced minimally invasive treatment for varicose veins using walk-in, walk-out procedures with proven results.',
       features: [
-        'Annual physical examinations',
-        'Chronic disease management',
-        'Preventive health screenings',
-        'Vaccination services',
+        'Endovenous laser ablation',
+        'Sclerotherapy injections',
+        'Ambulatory phlebectomy',
+        'Comprehensive vein evaluation',
       ],
-      icon: '🩺',
-      gradient: 'from-blue-400 to-blue-600',
+      icon: '🦵',
+      gradient: 'from-gray-800 to-black',
+      href: '/services/varicose-veins',
     },
     {
-      title: 'Cardiology',
-      description: 'Expert heart care and cardiovascular treatments with state-of-the-art diagnostic equipment and experienced cardiologists.',
+      title: 'Spider Veins',
+      description: 'Effective removal of spider and thread veins for clearer, healthier-looking skin using proven techniques.',
       features: [
-        'ECG and stress testing',
-        'Echocardiography',
-        'Heart disease management',
-        'Cardiac rehabilitation',
+        'Sclerotherapy treatment',
+        'Laser vein removal',
+        'Cosmetic vein therapy',
+        'Quick recovery time',
       ],
-      icon: '❤️',
-      gradient: 'from-red-400 to-pink-600',
-    },
-    {
-      title: 'Pediatrics',
-      description: 'Specialized care for infants, children, and adolescents in a friendly and comfortable environment.',
-      features: [
-        'Well-child visits',
-        'Immunizations',
-        'Growth and development monitoring',
-        'Pediatric urgent care',
-      ],
-      icon: '👶',
+      icon: '💉',
       gradient: 'from-purple-400 to-purple-600',
+      href: '/services/spider-veins',
     },
     {
-      title: 'Orthopedics',
-      description: 'Treatment for bones, joints, and musculoskeletal issues with both surgical and non-surgical options.',
+      title: 'Aesthetic Services',
+      description: 'Professional cosmetic and aesthetic procedures to help you look and feel your best in a clinical setting.',
       features: [
-        'Joint replacement surgery',
-        'Sports medicine',
-        'Fracture care',
-        'Physical therapy',
-      ],
-      icon: '🦴',
-      gradient: 'from-green-400 to-green-600',
-    },
-    {
-      title: 'Dermatology',
-      description: 'Comprehensive skin, hair, and nail care by board-certified dermatologists using the latest treatments.',
-      features: [
-        'Skin cancer screening',
-        'Acne treatment',
-        'Cosmetic procedures',
-        'Hair loss treatment',
+        'Cosmetic consultations',
+        'Non-surgical treatments',
+        'Skin rejuvenation',
+        'Professional aesthetic care',
       ],
       icon: '✨',
-      gradient: 'from-yellow-400 to-orange-600',
-    },
-    {
-      title: 'Neurology',
-      description: 'Expert diagnosis and treatment of nervous system disorders including brain, spinal cord, and nerve conditions.',
-      features: [
-        'Headache and migraine treatment',
-        'Epilepsy management',
-        'Stroke care',
-        'Movement disorder treatment',
-      ],
-      icon: '🧠',
-      gradient: 'from-indigo-400 to-indigo-600',
-    },
-    {
-      title: 'Gynecology',
-      description: 'Comprehensive women\'s health services including preventive care, pregnancy care, and treatment of gynecological conditions.',
-      features: [
-        'Annual wellness exams',
-        'Prenatal and postnatal care',
-        'Family planning',
-        'Menopause management',
-      ],
-      icon: '🌸',
       gradient: 'from-pink-400 to-pink-600',
+      href: '/services/aesthetics',
     },
     {
-      title: 'Ophthalmology',
-      description: 'Complete eye care services from routine exams to advanced surgical procedures for vision correction.',
+      title: 'Venous Ulcers',
+      description: 'Specialized treatment for chronic venous ulcers and leg swelling with comprehensive wound care management.',
       features: [
-        'Comprehensive eye exams',
-        'Cataract surgery',
-        'LASIK consultation',
-        'Glaucoma treatment',
+        'Ulcer assessment and treatment',
+        'Compression therapy',
+        'Wound care management',
+        'Preventive care planning',
       ],
-      icon: '👁️',
-      gradient: 'from-cyan-400 to-blue-600',
+      icon: '🩹',
+      gradient: 'from-red-400 to-red-600',
+      href: '/booking',
     },
     {
-      title: 'Laboratory Services',
-      description: 'Advanced diagnostic testing and pathology services with quick turnaround times and accurate results.',
+      title: 'General Surgery',
+      description: 'Minor surgical procedures and consultations backed by general surgical expertise and experience.',
       features: [
-        'Blood tests',
-        'Urinalysis',
-        'Microbiology testing',
-        'Pathology services',
+        'Minor surgical procedures',
+        'Surgical consultations',
+        'Pre-operative assessments',
+        'Post-operative care',
+      ],
+      icon: '🏥',
+      gradient: 'from-green-400 to-green-600',
+      href: '/booking',
+    },
+    {
+      title: 'Vein Evaluations',
+      description: 'Comprehensive vein health assessments using advanced diagnostic techniques to identify venous conditions.',
+      features: [
+        'Doppler ultrasound scanning',
+        'Venous insufficiency testing',
+        'Treatment planning',
+        'Follow-up assessments',
       ],
       icon: '🔬',
-      gradient: 'from-teal-400 to-teal-600',
-    },
-    {
-      title: 'Radiology',
-      description: 'State-of-the-art imaging services including X-rays, CT scans, MRI, and ultrasound for accurate diagnosis.',
-      features: [
-        'Digital X-rays',
-        'CT and MRI scans',
-        'Ultrasound imaging',
-        'Mammography',
-      ],
-      icon: '📡',
-      gradient: 'from-blue-400 to-cyan-600',
-    },
-    {
-      title: 'Emergency Care',
-      description: '24/7 emergency medical services with experienced staff ready to handle urgent medical situations.',
-      features: [
-        '24/7 availability',
-        'Trauma care',
-        'Emergency surgery',
-        'Critical care unit',
-      ],
-      icon: '🚑',
-      gradient: 'from-red-500 to-red-700',
-    },
-    {
-      title: 'Physical Therapy',
-      description: 'Rehabilitation services to help you recover from injuries, surgery, or manage chronic conditions.',
-      features: [
-        'Post-surgical rehabilitation',
-        'Sports injury recovery',
-        'Pain management',
-        'Mobility improvement',
-      ],
-      icon: '💪',
-      gradient: 'from-orange-400 to-orange-600',
+      gradient: 'from-cyan-400 to-black',
+      href: '/booking',
     },
   ];
 
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Parallax */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
             style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
           />
           <div 
@@ -181,27 +116,27 @@ export default function ServicesPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
           <div className="inline-block mb-6">
-            <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
-              🏥 Our Services
+            <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
+              🩺 Our Services
             </span>
           </div>
           <h1 
             className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
             style={{ transform: `translateY(${scrollY * 0.1}px)` }}
           >
-            Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Healthcare</span>
+            Vein & Aesthetic <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Specialists</span>
           </h1>
           <p 
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             style={{ transform: `translateY(${scrollY * 0.15}px)` }}
           >
-            Expert medical care across multiple specialties delivered by experienced professionals
+            Expert vein treatment and aesthetic services delivered with medical excellence and patient care
           </p>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
@@ -210,7 +145,7 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="py-32 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
         </div>
 
@@ -219,9 +154,7 @@ export default function ServicesPage() {
             {services.map((service, index) => (
               <Link
                 key={index}
-                href={service.title === 'General Medicine' ? '/services/general-medicine' : 
-                      service.title === 'Cardiology' ? '/services/cardiology' :
-                      service.title === 'Pediatrics' ? '/services/pediatrics' : '/booking'}
+                href={service.href}
                 className="group relative block"
                 style={{
                   animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`,
@@ -247,7 +180,7 @@ export default function ServicesPage() {
                     <ul className="space-y-2 mb-6">
                       {service.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start">
-                          <svg className="w-5 h-5 text-blue-600 group-hover:text-white mr-2 mt-0.5 flex-shrink-0 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-5 h-5 text-black group-hover:text-white mr-2 mt-0.5 flex-shrink-0 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                           <span className="text-gray-700 group-hover:text-white text-sm transition-colors duration-300">{feature}</span>
@@ -256,7 +189,7 @@ export default function ServicesPage() {
                     </ul>
 
                     {/* Learn More Link */}
-                    <div className="flex items-center text-blue-600 group-hover:text-white transition-colors duration-300">
+                    <div className="flex items-center text-black group-hover:text-white transition-colors duration-300">
                       <span className="font-semibold mr-2">Learn More</span>
                       <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -277,40 +210,40 @@ export default function ServicesPage() {
       <section className="py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
+            <span className="text-black font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              Excellence in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Every Service</span>
+              Excellence in <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Vein Care</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              What sets our medical services apart
+              What sets The Venous Lounge apart
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: 'Expert Specialists',
-                description: 'Board-certified doctors in every field',
+                title: 'Vein Specialist',
+                description: 'Expert in minimally invasive vein treatments',
                 icon: '👨‍⚕️',
-                gradient: 'from-blue-400 to-blue-600',
+                gradient: 'from-gray-800 to-black',
               },
               {
-                title: 'Advanced Technology',
-                description: 'State-of-the-art medical equipment',
-                icon: '🔬',
+                title: 'Medical Aid Accepted',
+                description: 'All major South African medical aids',
+                icon: '💳',
+                gradient: 'from-green-400 to-green-600',
+              },
+              {
+                title: 'Walk-in/Walk-out',
+                description: 'Minimally invasive procedures',
+                icon: '🚶',
                 gradient: 'from-purple-400 to-purple-600',
               },
               {
-                title: 'Personalized Care',
-                description: 'Treatment plans tailored to you',
-                icon: '💙',
+                title: 'Lounge Setting',
+                description: 'Clinical excellence in comfort',
+                icon: '🛋️',
                 gradient: 'from-pink-400 to-pink-600',
-              },
-              {
-                title: 'Quick Results',
-                description: 'Fast diagnosis and treatment',
-                icon: '⚡',
-                gradient: 'from-yellow-400 to-orange-600',
               },
             ].map((feature, index) => (
               <div
@@ -346,9 +279,110 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Meet Dr Sesing Section */}
+      <section className="py-32 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Doctor Image */}
+            <div className="relative" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
+              <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/image/venous.png"
+                  alt="Dr Sesing - Vein & Aesthetic Specialist"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                {/* Floating Badge */}
+                <div className="absolute top-6 right-6 bg-white rounded-2xl p-4 shadow-xl">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-black">15+</div>
+                    <div className="text-sm text-gray-600">Years Experience</div>
+                  </div>
+                </div>
+                {/* Bottom Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-3xl font-bold mb-2">Dr Sesing</h3>
+                  <p className="text-xl text-gray-100 mb-4">Vein & Aesthetic Specialist</p>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center">
+                      <svg className="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <span className="text-sm">Expert Specialist</span>
+                    </div>
+                    <div className="flex items-center">
+                      <svg className="w-5 h-5 text-green-400 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-sm">Board Certified</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-6" style={{ animation: 'fadeInUp 0.6s ease-out 200ms both' }}>
+              <div className="inline-block">
+                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
+                  👨‍⚕️ Meet Your Specialist
+                </span>
+              </div>
+              
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+                Expert Care from <span className="text-black">Dr Sesing</span>
+              </h2>
+              
+              <p className="text-xl text-gray-600 leading-relaxed">
+                With over 15 years of experience in vein treatment and aesthetic procedures, Dr Sesing brings 
+                expertise, compassion, and cutting-edge techniques to every patient consultation.
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    title: 'Minimally Invasive Specialist',
+                    desc: 'Expert in walk-in, walk-out vein procedures',
+                    icon: '🩺',
+                  },
+                  {
+                    title: 'Patient-Centered Approach',
+                    desc: 'Your comfort and results are our priority',
+                    icon: '💙',
+                  },
+                  {
+                    title: 'Proven Track Record',
+                    desc: '1000+ successful treatments performed',
+                    icon: '⭐',
+                  },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-4 bg-gray-50 rounded-2xl p-4 hover:bg-gray-50 transition-colors duration-300">
+                    <div className="text-4xl">{item.icon}</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">{item.title}</h4>
+                      <p className="text-gray-600">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4">
+                <Link 
+                  href="/booking" 
+                  className="inline-block bg-gradient-to-r from-black to-gray-500 text-white px-8 py-4 rounded-full hover:shadow-2xl transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+                >
+                  Book Consultation with Dr Sesing
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-700 to-blue-800" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-700 to-black" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         </div>
@@ -363,20 +397,20 @@ export default function ServicesPage() {
           <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">
             Ready to Schedule Your Appointment?
           </h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto leading-relaxed">
             Our team is here to provide you with the best medical care. Book your appointment today.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/booking" 
-              className="group relative bg-white text-blue-600 px-10 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-2xl transform hover:scale-105"
+              className="group relative bg-white text-black px-10 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-2xl transform hover:scale-105"
             >
               <span className="relative z-10">Book an Appointment</span>
             </Link>
             <Link 
               href="/contact" 
-              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-semibold text-lg transform hover:scale-105"
             >
               Contact Us
             </Link>

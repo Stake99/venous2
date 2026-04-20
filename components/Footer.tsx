@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -7,7 +8,7 @@ export default function Footer() {
     <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
       </div>
 
@@ -15,14 +16,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 mb-4 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                <span className="text-white font-bold text-xl">M+</span>
+            <Link href="/" className="flex items-center space-x-3 mb-4 group">
+              <div className="relative w-12 h-12 transform group-hover:scale-110 transition-transform duration-300">
+                <Image
+                  src="/image/venous_logo.png"
+                  alt="The Venous Lounge Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <span className="text-xl font-bold">MediCare Plus</span>
+              <span className="text-xl font-bold">The Venous Lounge</span>
             </Link>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Your trusted healthcare partner providing quality medical services with compassion and expertise.
+              Dr Sesing Surgery & Aesthetics - Your trusted partner for vein treatment and aesthetic services in Bloemfontein, South Africa.
             </p>
             <div className="flex space-x-4">
               {[
@@ -33,7 +39,7 @@ export default function Footer() {
                 <a 
                   key={index} 
                   href="#" 
-                  className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110"
+                  className="text-gray-400 hover:text-gray-800 transition-all duration-300 transform hover:scale-110"
                   aria-label={social.label}
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -51,15 +57,15 @@ export default function Footer() {
               {[
                 { name: 'About Us', href: '/about' },
                 { name: 'Our Services', href: '/services' },
-                { name: 'General Medicine', href: '/services/general-medicine' },
-                { name: 'Cardiology', href: '/services/cardiology' },
-                { name: 'Pediatrics', href: '/services/pediatrics' },
+                { name: 'Varicose Veins', href: '/services/varicose-veins' },
+                { name: 'Spider Veins', href: '/services/spider-veins' },
+                { name: 'Aesthetic Services', href: '/services/aesthetics' },
                 { name: 'Book Appointment', href: '/booking' },
               ].map((link, index) => (
                 <li key={index}>
                   <Link 
                     href={link.href} 
-                    className="text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center group"
+                    className="text-gray-400 hover:text-gray-800 transition-colors inline-flex items-center group"
                   >
                     <svg className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -76,23 +82,23 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-white">Contact</h3>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-start group">
-                <svg className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-2 mt-1 flex-shrink-0 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="group-hover:text-blue-400 transition-colors">123 Medical Center Dr, Healthcare City, HC 12345</span>
+                <span className="group-hover:text-gray-800 transition-colors">Unit 3, Preller Square, Kellner Street, Westdene, Bloemfontein, 9301, South Africa</span>
               </li>
               <li className="flex items-center group">
-                <svg className="w-5 h-5 mr-2 flex-shrink-0 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-2 flex-shrink-0 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:5551234567" className="group-hover:text-blue-400 transition-colors">(555) 123-4567</a>
+                <a href="tel:+27514479589" className="group-hover:text-gray-800 transition-colors">+27 51 447 9589</a>
               </li>
               <li className="flex items-center group">
-                <svg className="w-5 h-5 mr-2 flex-shrink-0 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-2 flex-shrink-0 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@medicareplus.com" className="group-hover:text-blue-400 transition-colors">info@medicareplus.com</a>
+                <a href="mailto:dr.sesingsurg@gmail.com" className="group-hover:text-gray-800 transition-colors">dr.sesingsurg@gmail.com</a>
               </li>
             </ul>
           </div>
@@ -100,9 +106,9 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; {currentYear} MediCare Plus. All rights reserved. | 
-            <Link href="/contact" className="hover:text-blue-400 transition-colors ml-2">Privacy Policy</Link> | 
-            <Link href="/contact" className="hover:text-blue-400 transition-colors ml-2">Terms of Service</Link>
+            &copy; {currentYear} The Venous Lounge - Dr Sesing Surgery & Aesthetics. All rights reserved. | 
+            <Link href="/contact" className="hover:text-gray-800 transition-colors ml-2">Privacy Policy</Link> | 
+            <Link href="/contact" className="hover:text-gray-800 transition-colors ml-2">Terms of Service</Link>
           </p>
         </div>
       </div>

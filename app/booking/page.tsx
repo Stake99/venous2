@@ -83,11 +83,11 @@ export default function BookingPage() {
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Parallax */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
+            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
             style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
           />
           <div 
@@ -98,7 +98,7 @@ export default function BookingPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
           <div className="inline-block mb-6">
-            <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+            <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
               📅 Easy Booking
             </span>
           </div>
@@ -106,7 +106,7 @@ export default function BookingPage() {
             className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
             style={{ transform: `translateY(${scrollY * 0.1}px)` }}
           >
-            Book Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">Appointment</span>
+            Book Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Appointment</span>
           </h1>
           <p 
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
@@ -120,7 +120,7 @@ export default function BookingPage() {
       {/* Booking Form Section */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
         </div>
 
@@ -162,7 +162,7 @@ export default function BookingPage() {
                       required
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="John"
                     />
                   </div>
@@ -177,7 +177,7 @@ export default function BookingPage() {
                       required
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="Doe"
                     />
                   </div>
@@ -192,7 +192,7 @@ export default function BookingPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="john.doe@example.com"
                     />
                   </div>
@@ -207,7 +207,7 @@ export default function BookingPage() {
                       required
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -231,7 +231,7 @@ export default function BookingPage() {
                       required
                       value={formData.department}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                     >
                       <option value="">Select Department</option>
                       {departments.map((dept) => (
@@ -251,7 +251,7 @@ export default function BookingPage() {
                       name="doctor"
                       value={formData.doctor}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                       placeholder="Dr. Smith"
                     />
                   </div>
@@ -267,7 +267,7 @@ export default function BookingPage() {
                       min={today}
                       value={formData.date}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                     />
                   </div>
                   <div className="group">
@@ -280,7 +280,7 @@ export default function BookingPage() {
                       required
                       value={formData.time}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                     >
                       <option value="">Select Time</option>
                       {timeSlots.map((slot) => (
@@ -307,7 +307,7 @@ export default function BookingPage() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:border-blue-300"
+                  className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
                   placeholder="Please provide any additional information about your visit..."
                 />
               </div>
@@ -316,7 +316,7 @@ export default function BookingPage() {
               <div className="flex justify-center pt-6">
                 <button
                   type="submit"
-                  className="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-16 py-5 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
+                  className="group relative bg-gradient-to-r from-black to-purple-600 text-white px-16 py-5 rounded-full hover:from-gray-900 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
                 >
                   <span className="relative z-10 flex items-center">
                     Book Appointment
@@ -330,7 +330,7 @@ export default function BookingPage() {
           </div>
 
           {/* Contact Information Card */}
-          <div className="mt-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-lg transform hover:shadow-xl transition-all duration-500">
+          <div className="mt-12 bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-8 shadow-lg transform hover:shadow-xl transition-all duration-500">
             <div className="flex items-center mb-6">
               <div className="text-4xl mr-4">💡</div>
               <h3 className="text-2xl font-bold text-gray-900">Need Help?</h3>
@@ -350,7 +350,7 @@ export default function BookingPage() {
                 <div className="text-3xl">✉️</div>
                 <div>
                   <div className="text-sm text-gray-500">Email</div>
-                  <div className="font-semibold text-gray-900">info@medicareplus.com</div>
+                  <div className="font-semibold text-gray-900">dr.sesingsurg@gmail.com</div>
                 </div>
               </div>
             </div>
