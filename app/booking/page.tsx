@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function BookingPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -124,7 +125,101 @@ export default function BookingPage() {
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            {/* Clinic Images */}
+            <div className="space-y-6">
+              <div className="relative h-80 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+                <Image
+                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80"
+                  alt="Modern clinic waiting area"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">Comfortable Waiting Area</h3>
+                  <p className="text-white/90">Relax in our modern lounge-style facility</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="relative h-40 rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80"
+                    alt="Doctor consultation"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                    <p className="text-white text-sm font-semibold">Expert Consultations</p>
+                  </div>
+                </div>
+                <div className="relative h-40 rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=400&q=80"
+                    alt="Private rooms"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                    <p className="text-white text-sm font-semibold">Private Treatment Rooms</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Info Cards */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Book With Us?</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <span className="text-3xl mr-3">⚡</span>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Quick & Easy</h4>
+                      <p className="text-gray-600 text-sm">Book in under 2 minutes</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-3xl mr-3">💳</span>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">All Medical Aids</h4>
+                      <p className="text-gray-600 text-sm">We accept all major schemes</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-3xl mr-3">🕐</span>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Flexible Hours</h4>
+                      <p className="text-gray-600 text-sm">Mon-Fri: 8AM-10PM, Sat-Sun: 8AM-1PM</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-3xl mr-3">📍</span>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Convenient Location</h4>
+                      <p className="text-gray-600 text-sm">Phahameng, Bloemfontein</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative h-48 rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80"
+                  alt="Medical equipment"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent flex items-end p-6">
+                  <div>
+                    <h4 className="text-white text-xl font-bold mb-1">Advanced Technology</h4>
+                    <p className="text-white/90 text-sm">Latest medical equipment for best results</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Success Message */}
           {submitted && (
             <div 
@@ -142,6 +237,7 @@ export default function BookingPage() {
           )}
 
           {/* Booking Form Card */}
+          <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 transform hover:shadow-3xl transition-all duration-500">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Personal Information */}
@@ -327,10 +423,11 @@ export default function BookingPage() {
                 </button>
               </div>
             </form>
+            </div>
           </div>
 
           {/* Contact Information Card */}
-          <div className="mt-12 bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-8 shadow-lg transform hover:shadow-xl transition-all duration-500">
+          <div className="max-w-5xl mx-auto mt-12 bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-8 shadow-lg transform hover:shadow-xl transition-all duration-500">
             <div className="flex items-center mb-6">
               <div className="text-4xl mr-4">💡</div>
               <h3 className="text-2xl font-bold text-gray-900">Need Help?</h3>

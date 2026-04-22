@@ -61,6 +61,52 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Clinic Images Showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80"
+                alt="Modern clinic reception"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-1">Modern Reception</h3>
+                  <p className="text-white/90 text-sm">Welcoming lounge atmosphere</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80"
+                alt="Private consultation rooms"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-1">Private Rooms</h3>
+                  <p className="text-white/90 text-sm">Comfortable consultation spaces</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80"
+                alt="Advanced medical equipment"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-1">Advanced Equipment</h3>
+                  <p className="text-white/90 text-sm">Latest medical technology</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center mb-16">
             <span className="text-black font-semibold text-sm uppercase tracking-wider">Who We Are</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">

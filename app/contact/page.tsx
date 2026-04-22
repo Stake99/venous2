@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function ContactPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -92,6 +93,21 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
+              {/* Clinic Image */}
+              <div className="relative h-64 rounded-3xl overflow-hidden shadow-2xl mb-8 transform hover:scale-105 transition-all duration-500">
+                <Image
+                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
+                  alt="Venous Lounge Medical Center"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-blue-900/40 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">Visit Our Clinic</h3>
+                  <p className="text-white/90">Modern facilities in Phahameng, Bloemfontein</p>
+                </div>
+              </div>
+              
               <div className="inline-block mb-6">
                 <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
                   📍 Our Location
@@ -106,7 +122,7 @@ export default function ContactPage() {
                   {
                     icon: '📍',
                     title: 'Address',
-                    content: 'Unit 3, Preller Square\nKellner Street, Westdene\nBloemfontein, 9301\nSouth Africa',
+                    content: '6571 Dr Lebona Street\nPhahameng\nBloemfontein\nSouth Africa',
                     gradient: 'from-gray-800 to-black',
                   },
                   {
@@ -124,7 +140,7 @@ export default function ContactPage() {
                   {
                     icon: '🕐',
                     title: 'Hours',
-                    content: 'Monday - Friday: 08:00 - 22:00\nSaturday: 08:00 - 13:00\nSunday: Closed',
+                    content: 'Monday - Friday: 08:00 AM - 10:00 PM\nSaturday - Sunday: 08:00 AM - 01:00 PM',
                     gradient: 'from-orange-400 to-orange-600',
                   },
                 ].map((item, index) => (

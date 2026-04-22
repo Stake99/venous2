@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function VaricoseVeinsPage() {
@@ -16,6 +17,16 @@ export default function VaricoseVeinsPage() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1600&q=80"
+            alt="Varicose veins treatment"
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-white/70" />
+        </div>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
           <div className="absolute top-40 right-10 w-72 h-72 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
@@ -42,6 +53,43 @@ export default function VaricoseVeinsPage() {
       {/* Content Section */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Treatment Images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="relative h-64 rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80"
+                alt="Doctor consultation"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                <p className="text-white font-semibold">Expert Consultation</p>
+              </div>
+            </div>
+            <div className="relative h-64 rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80"
+                alt="Vein treatment procedure"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                <p className="text-white font-semibold">Advanced Procedures</p>
+              </div>
+            </div>
+            <div className="relative h-64 rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80"
+                alt="Treatment room"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                <p className="text-white font-semibold">Modern Facilities</p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">

@@ -150,6 +150,38 @@ export default function ServicesPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Featured Treatment Images */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
+                alt="Vein treatment procedures"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
+                <div>
+                  <h3 className="text-white font-bold text-3xl mb-2">Vein Treatments</h3>
+                  <p className="text-white/90 text-lg">Advanced minimally invasive procedures</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80"
+                alt="Aesthetic services"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent flex items-end p-8">
+                <div>
+                  <h3 className="text-white font-bold text-3xl mb-2">Aesthetic Services</h3>
+                  <p className="text-white/90 text-lg">Professional cosmetic treatments</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Link
@@ -217,6 +249,43 @@ export default function ServicesPage() {
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               What sets The Venous Lounge apart
             </p>
+          </div>
+
+          {/* Facility Images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80"
+                alt="Modern clinic reception"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                <p className="text-white font-bold text-lg">Modern Facilities</p>
+              </div>
+            </div>
+            <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80"
+                alt="Private consultation rooms"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                <p className="text-white font-bold text-lg">Private Rooms</p>
+              </div>
+            </div>
+            <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80"
+                alt="Advanced medical equipment"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                <p className="text-white font-bold text-lg">Advanced Equipment</p>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

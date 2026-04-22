@@ -28,7 +28,7 @@ export default function Footer() {
               <span className="text-xl font-bold">The Venous Lounge</span>
             </Link>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Dr Sesing Surgery & Aesthetics - Your trusted partner for vein treatment and aesthetic services in Bloemfontein, South Africa.
+              Venous Lounge Medical Center - Your trusted partner for vein treatment and aesthetic services in Phahameng, Bloemfontein, South Africa.
             </p>
             <div className="flex space-x-4">
               {[
@@ -86,7 +86,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="group-hover:text-gray-800 transition-colors">Unit 3, Preller Square, Kellner Street, Westdene, Bloemfontein, 9301, South Africa</span>
+                <span className="group-hover:text-gray-800 transition-colors">6571 Dr Lebona Street, Phahameng, Bloemfontein, South Africa</span>
               </li>
               <li className="flex items-center group">
                 <svg className="w-5 h-5 mr-2 flex-shrink-0 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; {currentYear} The Venous Lounge - Dr Sesing Surgery & Aesthetics. All rights reserved. | 
+            &copy; {currentYear} Venous Lounge Medical Center. All rights reserved. | 
             <Link href="/contact" className="hover:text-gray-800 transition-colors ml-2">Privacy Policy</Link> | 
             <Link href="/contact" className="hover:text-gray-800 transition-colors ml-2">Terms of Service</Link>
           </p>

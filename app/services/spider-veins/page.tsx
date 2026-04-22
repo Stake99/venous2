@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function SpiderVeinsPage() {
@@ -16,6 +17,16 @@ export default function SpiderVeinsPage() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1600&q=80"
+            alt="Spider veins treatment"
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-50/90 to-pink-50/70" />
+        </div>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
           <div className="absolute top-40 right-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
@@ -42,6 +53,38 @@ export default function SpiderVeinsPage() {
       {/* Content Section */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Treatment Images */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div className="relative h-80 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80"
+                alt="Spider vein treatment"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-white font-bold text-2xl mb-2">Sclerotherapy Treatment</h3>
+                  <p className="text-white/90">Effective spider vein removal</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-80 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
+              <Image
+                src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80"
+                alt="Happy patient results"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-white font-bold text-2xl mb-2">Beautiful Results</h3>
+                  <p className="text-white/90">Clear, healthy-looking skin</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
