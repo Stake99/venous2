@@ -70,12 +70,13 @@ export default function Page() {
   const heroBlur  = useTransform(heroProgress, [0.4, 1], ['blur(0px)', 'blur(6px)']);
   const heroFade  = useTransform(heroProgress, [0, 0.85], [1, 0]);
 
-  // Process timeline — gradient line fills as you scroll through
+  // Process timeline — gradient line fills as you scroll through, and a glowing head leads it
   const processRef = useRef<HTMLElement>(null);
   const { scrollYProgress: processProgress } = useScroll({
     target: processRef,
     offset: ['start 70%', 'end 30%'],
   });
+  const headTop = useTransform(processProgress, [0, 1], ['0%', '100%']);
 
   return (
     <>
@@ -301,12 +302,34 @@ export default function Page() {
           <div className="relative max-w-4xl mx-auto">
             {/* Track */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-grey-07 -translate-x-1/2" />
-            {/* Scroll-linked holographic fill */}
+            {/* Soft outer glow that fills with scroll */}
             <motion.div
               style={{ scaleY: processProgress, transformOrigin: 'top' }}
-              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] holo-bg -translate-x-1/2"
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[14px] holo-bg blur-md opacity-60 -translate-x-1/2"
               aria-hidden
             />
+            {/* Crisp inner line that fills with scroll */}
+            <motion.div
+              style={{ scaleY: processProgress, transformOrigin: 'top' }}
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[3px] holo-bg -translate-x-1/2 rounded-full"
+              aria-hidden
+            />
+            {/* Scanning head — travels down the line as you scroll */}
+            <motion.div
+              style={{ top: headTop }}
+              className="hidden md:block absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+              aria-hidden
+            >
+              <motion.div
+                className="relative w-5 h-5"
+                animate={{ scale: [1, 1.25, 1] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <div className="absolute -inset-4 holo-bg rounded-full blur-xl opacity-70" />
+                <div className="absolute -inset-1.5 holo-bg rounded-full blur-sm opacity-90" />
+                <div className="absolute inset-0 holo-bg rounded-full border border-white" />
+              </motion.div>
+            </motion.div>
 
             <div className="space-y-12 md:space-y-16">
               {process.map((p, i) => {

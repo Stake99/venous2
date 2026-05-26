@@ -23,10 +23,21 @@ export default function CursorGlow() {
   }, [x, y]);
 
   return (
-    <motion.div
-      aria-hidden
-      style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed top-0 left-0 w-[40rem] h-[40rem] holo-bg opacity-40 blur-3xl rounded-full z-0"
-    />
+    <>
+      {/* Outer diffuse halo */}
+      <motion.div
+        aria-hidden
+        style={{ x: sx, y: sy }}
+        className="pointer-events-none fixed top-0 left-0 w-[44rem] h-[44rem] holo-bg opacity-50 blur-3xl rounded-full z-0"
+      />
+      {/* Inner denser core */}
+      <motion.div
+        aria-hidden
+        style={{ x: sx, y: sy }}
+        className="pointer-events-none fixed top-0 left-0 w-[44rem] h-[44rem] z-0"
+      >
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20rem] h-[20rem] holo-bg opacity-70 blur-2xl rounded-full" />
+      </motion.div>
+    </>
   );
 }
