@@ -180,3 +180,24 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #fff;
   border-radius: 100vw;
 }
+
+/* Horizontal marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee linear infinite;
+  will-change: transform;
+}
+
+/* Mask edges of horizontal scrollers */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* Subtle 3D perspective container */
+.tilt-3d {
+  perspective: 1200px;
+}

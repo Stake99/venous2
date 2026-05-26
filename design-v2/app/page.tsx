@@ -2,51 +2,23 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ArrowUpRight, ArrowRight, Check, ChevronDown, Stethoscope, Activity, Sparkles,
-  HeartPulse, Scissors, Award, ShieldCheck, Users, Heart, MapPin, Phone, Clock,
+  ArrowUpRight, ArrowRight, Check, ShieldCheck, Heart, MapPin, Phone, Clock,
 } from 'lucide-react';
-
-/* ───────────────── Helpers ───────────────── */
-function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="eyebrow">
-      <span className="eyebrow-dot" />
-      {children}
-    </span>
-  );
-}
+import FadeIn from '@/components/FadeIn';
+import Eyebrow from '@/components/Eyebrow';
+import FaqAccordion from '@/components/FaqAccordion';
+import Counter from '@/components/Counter';
+import Marquee from '@/components/Marquee';
+import { services } from '@/lib/services';
 
 /* ───────────────── Content ───────────────── */
 const values = [
   { n: '01', title: 'Your Health, Our Priority',     desc: 'Medical-care standards prioritised over cosmetic trends — trust, reliability, and clinical excellence first.' },
   { n: '02', title: 'Family-Oriented Care',          desc: 'Designed for continuity of care — serving whole families and groups, not just individual patients.' },
   { n: '03', title: 'Medical Aid Friendly',          desc: 'All major South African medical-aid schemes accepted, making expert vein and surgical care accessible.' },
-];
-
-const services = [
-  { Icon: Activity,    title: 'Varicose Veins',     desc: 'Minimally invasive walk-in, walk-out treatments with proven results.',           features: ['Endovenous laser ablation', 'Sclerotherapy injections', 'Ambulatory phlebectomy'] },
-  { Icon: Sparkles,    title: 'Spider Veins',       desc: 'Effective removal of spider and thread veins for clearer, healthier skin.',     features: ['Sclerotherapy treatment', 'Laser vein removal', 'Cosmetic vein therapy'] },
-  { Icon: HeartPulse,  title: 'Aesthetic Services', desc: 'Professional cosmetic procedures backed by medical expertise.',                 features: ['Cosmetic consultations', 'Non-surgical treatments', 'Skin rejuvenation'] },
-  { Icon: Scissors,    title: 'Venous Ulcers',      desc: 'Specialised treatment for chronic ulcers and comprehensive wound care.',        features: ['Ulcer assessment', 'Compression therapy', 'Wound care management'] },
-  { Icon: Stethoscope, title: 'General Surgery',    desc: 'Minor procedures and consultations from a general-surgical foundation.',       features: ['Minor surgical procedures', 'Pre-operative assessments', 'Post-operative care'] },
-  { Icon: Award,       title: 'Vein Evaluations',   desc: 'Comprehensive assessments using advanced diagnostic techniques.',               features: ['Doppler ultrasound scanning', 'Venous insufficiency testing', 'Treatment planning'] },
 ];
 
 const process = [
@@ -57,11 +29,12 @@ const process = [
   { n: '05', title: 'Follow-up & Care',     desc: 'Recovery monitoring and continued support to ensure lasting results.' },
 ];
 
-const stats = [
-  { num: '15+',  label: 'Years of Experience' },
-  { num: '1000+', label: 'Successful Procedures' },
-  { num: '6',    label: 'Days Open Weekly' },
-  { num: 'All',  label: 'Major Medical Aids' },
+type Stat = { num: number; suffix?: string; label: string } | { text: string; label: string };
+const stats: Stat[] = [
+  { num: 15,   suffix: '+', label: 'Years of Experience' },
+  { num: 1000, suffix: '+', label: 'Successful Procedures' },
+  { num: 6,                 label: 'Days Open Weekly' },
+  { text: 'All',            label: 'Major Medical Aids' },
 ];
 
 const team = [
@@ -79,74 +52,112 @@ const faqs = [
 
 /* ───────────────── Page ───────────────── */
 export default function Page() {
+  // Hero parallax — each element drifts at its own rate as you scroll
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const glowY     = useTransform(heroProgress, [0, 1], ['0%',   '60%']);
+  const eyebrowY  = useTransform(heroProgress, [0, 1], ['0%', '-200%']);
+  const headingY  = useTransform(heroProgress, [0, 1], ['0%',  '-80%']);
+  const subY      = useTransform(heroProgress, [0, 1], ['0%',  '-40%']);
+  const ctaY      = useTransform(heroProgress, [0, 1], ['0%',  '-20%']);
+  const cardY     = useTransform(heroProgress, [0, 1], ['0%',   '25%']);
+  const heroBlur  = useTransform(heroProgress, [0.4, 1], ['blur(0px)', 'blur(4px)']);
+  const heroFade  = useTransform(heroProgress, [0, 0.85], [1, 0]);
+
+  // Process timeline — gradient line fills as you scroll through
+  const processRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: processProgress } = useScroll({
+    target: processRef,
+    offset: ['start 70%', 'end 30%'],
+  });
+
   return (
     <>
       {/* ════════════ HERO ════════════ */}
-      <section className="relative pt-12 lg:pt-20 pb-24 overflow-hidden">
+      <section ref={heroRef} className="relative pt-12 lg:pt-20 pb-24 overflow-hidden">
         {/* Holographic glow */}
-        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[64rem] h-[40rem] holo-soft-bg blur-3xl opacity-60 rounded-full" />
+        <motion.div
+          style={{ y: glowY }}
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[64rem] h-[40rem] holo-soft-bg blur-3xl opacity-60 rounded-full"
+        />
 
-        <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-          <FadeIn className="flex justify-center">
-            <Eyebrow>Trusted vein & surgical care · Bloemfontein</Eyebrow>
-          </FadeIn>
+        <motion.div
+          style={{ opacity: heroFade, filter: heroBlur }}
+          className="relative max-w-7xl mx-auto px-5 lg:px-8"
+        >
+          <motion.div style={{ y: eyebrowY }}>
+            <FadeIn className="flex justify-center">
+              <Eyebrow>Trusted vein & surgical care · Bloemfontein</Eyebrow>
+            </FadeIn>
+          </motion.div>
 
-          <FadeIn delay={0.05} className="mt-7 text-center">
-            <h1 className="heading-display max-w-5xl mx-auto">
-              Your Health, <span className="holo-text">Restored.</span>
-            </h1>
-          </FadeIn>
+          <motion.div style={{ y: headingY }}>
+            <FadeIn delay={0.05} className="mt-7 text-center">
+              <h1 className="heading-display max-w-5xl mx-auto">
+                Your Health, <span className="holo-text">Restored.</span>
+              </h1>
+            </FadeIn>
+          </motion.div>
 
-          <FadeIn delay={0.1} className="mt-6 text-center">
-            <p className="text-lg lg:text-xl text-grey-04 max-w-2xl mx-auto leading-relaxed">
-              Specialised vein and general surgical care for families across South Africa — backed by 15+ years of experience and all major medical aids.
-            </p>
-          </FadeIn>
+          <motion.div style={{ y: subY }}>
+            <FadeIn delay={0.1} className="mt-6 text-center">
+              <p className="text-lg lg:text-xl text-grey-04 max-w-2xl mx-auto leading-relaxed">
+                Specialised vein and general surgical care for families across South Africa — backed by 15+ years of experience and all major medical aids.
+              </p>
+            </FadeIn>
+          </motion.div>
 
-          <FadeIn delay={0.15} className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="#contact" className="btn-primary">
-              <span className="holo-bg w-7 h-7 rounded-full flex items-center justify-center">
-                <ArrowUpRight className="w-3.5 h-3.5 text-grey-01" />
-              </span>
-              Book a Consultation
-            </Link>
-            <Link href="#services" className="btn-outline">
-              Explore services
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </FadeIn>
+          <motion.div style={{ y: ctaY }}>
+            <FadeIn delay={0.15} className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href="/#contact" className="btn-primary">
+                <span className="holo-bg w-7 h-7 rounded-full flex items-center justify-center">
+                  <ArrowUpRight className="w-3.5 h-3.5 text-grey-01" />
+                </span>
+                Book a Consultation
+              </Link>
+              <Link href="#services" className="btn-outline">
+                Explore services
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </FadeIn>
+          </motion.div>
 
-          {/* Doctor card */}
-          <FadeIn delay={0.2} className="mt-16 lg:mt-24">
-            <div className="relative max-w-5xl mx-auto card-elevated overflow-hidden">
-              <div className="relative aspect-[16/9] bg-grey-08">
-                <Image
-                  src="/image/general_practitioner.jpg"
-                  alt="Dr Mpho Sesing"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10 flex flex-wrap items-end justify-between gap-4">
-                  <div className="text-white">
-                    <p className="text-xs uppercase tracking-widest text-white/70 mb-1.5">Lead practitioner</p>
-                    <p className="text-2xl lg:text-3xl font-medium tracking-tight">Dr Mpho Sesing</p>
-                    <p className="text-white/70 text-sm">General Practitioner · 15+ years</p>
-                  </div>
-                  <div className="flex gap-2.5">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="avatar-ring w-9 h-9 rounded-full overflow-hidden bg-grey-07" />
-                    ))}
-                    <div className="avatar-ring w-9 h-9 rounded-full holo-bg flex items-center justify-center text-xs font-medium text-grey-01">
-                      1k+
+          {/* Doctor card — drifts down slower than the text rises */}
+          <motion.div style={{ y: cardY }}>
+            <FadeIn delay={0.2} className="mt-16 lg:mt-24">
+              <div className="relative max-w-5xl mx-auto card-elevated overflow-hidden">
+                <div className="relative aspect-[16/9] bg-grey-08">
+                  <Image
+                    src="/image/general_practitioner.jpg"
+                    alt="Dr Mpho Sesing"
+                    fill
+                    priority
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10 flex flex-wrap items-end justify-between gap-4">
+                    <div className="text-white">
+                      <p className="text-xs uppercase tracking-widest text-white/70 mb-1.5">Lead practitioner</p>
+                      <p className="text-2xl lg:text-3xl font-medium tracking-tight">Dr Mpho Sesing</p>
+                      <p className="text-white/70 text-sm">General Practitioner · 15+ years</p>
+                    </div>
+                    <div className="flex gap-2.5">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="avatar-ring w-9 h-9 rounded-full overflow-hidden bg-grey-07" />
+                      ))}
+                      <div className="avatar-ring w-9 h-9 rounded-full holo-bg flex items-center justify-center text-xs font-medium text-grey-01">
+                        1k+
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </FadeIn>
-        </div>
+            </FadeIn>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ════════════ ABOUT STRIP ════════════ */}
@@ -200,6 +211,19 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ════════════ MARQUEE STRIP ════════════ */}
+      <Marquee
+        items={[
+          'Your Health',
+          'Restored',
+          'Always',
+          'Trusted Care',
+          'Bloemfontein',
+          'Walk-in · Walk-out',
+        ]}
+        speedSec={45}
+      />
+
       {/* ════════════ SERVICES ════════════ */}
       <section id="services" className="py-24 lg:py-32 border-t border-grey-07">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -212,8 +236,11 @@ export default function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
-              <FadeIn key={s.title} delay={i * 0.05}>
-                <div className="card-base p-7 h-full hover:border-grey-04 transition-colors group">
+              <FadeIn key={s.slug} delay={i * 0.05}>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="card-base p-7 h-full hover:border-grey-04 transition-colors group block"
+                >
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-11 h-11 rounded-xl holo-soft-bg flex items-center justify-center">
                       <s.Icon className="w-5 h-5 text-grey-01" />
@@ -221,16 +248,16 @@ export default function Page() {
                     <ArrowUpRight className="w-5 h-5 text-grey-05 group-hover:text-grey-01 group-hover:rotate-45 transition-all" />
                   </div>
                   <h3 className="text-xl font-medium tracking-tight mb-2">{s.title}</h3>
-                  <p className="text-grey-04 text-sm leading-relaxed mb-6">{s.desc}</p>
+                  <p className="text-grey-04 text-sm leading-relaxed mb-6">{s.short}</p>
                   <ul className="space-y-2.5 border-t border-grey-07 pt-5">
-                    {s.features.map((f) => (
+                    {s.features.slice(0, 3).map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm text-grey-03">
                         <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-grey-01" />
                         {f}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
@@ -259,7 +286,7 @@ export default function Page() {
       </section>
 
       {/* ════════════ PROCESS ════════════ */}
-      <section id="process" className="py-24 lg:py-32 border-t border-grey-07 bg-grey-08">
+      <section ref={processRef} id="process" className="py-24 lg:py-32 border-t border-grey-07 bg-grey-08">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <FadeIn className="text-center mb-20">
             <Eyebrow>How We Work</Eyebrow>
@@ -269,8 +296,14 @@ export default function Page() {
           </FadeIn>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Vertical line */}
+            {/* Track */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-grey-07 -translate-x-1/2" />
+            {/* Scroll-linked holographic fill */}
+            <motion.div
+              style={{ scaleY: processProgress, transformOrigin: 'top' }}
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] holo-bg -translate-x-1/2"
+              aria-hidden
+            />
 
             <div className="space-y-12 md:space-y-16">
               {process.map((p, i) => {
@@ -305,7 +338,9 @@ export default function Page() {
           {stats.map((s, i) => (
             <FadeIn key={s.label} delay={i * 0.05}>
               <div className="card-grey p-8 text-center">
-                <div className="text-5xl lg:text-6xl font-medium tracking-tighter holo-text">{s.num}</div>
+                <div className="text-5xl lg:text-6xl font-medium tracking-tighter holo-text">
+                  {'num' in s ? <Counter to={s.num} suffix={s.suffix} /> : s.text}
+                </div>
                 <div className="mt-3 text-sm text-grey-04">{s.label}</div>
               </div>
             </FadeIn>
@@ -366,13 +401,7 @@ export default function Page() {
             </h2>
           </FadeIn>
 
-          <div className="space-y-3">
-            {faqs.map((f, i) => (
-              <FadeIn key={f.q} delay={i * 0.04}>
-                <FaqItem n={i + 1} q={f.q} a={f.a} />
-              </FadeIn>
-            ))}
-          </div>
+          <FaqAccordion items={faqs} />
 
           <FadeIn className="mt-12">
             <div className="card-base p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -419,26 +448,3 @@ export default function Page() {
   );
 }
 
-/* ───────────────── FAQ Item ───────────────── */
-function FaqItem({ n, q, a }: { n: number; q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="card-base overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
-      >
-        <div className="flex items-center gap-4">
-          <span className="text-grey-05 text-sm w-5">{n}</span>
-          <span className="text-grey-01 font-medium tracking-tight">{q}</span>
-        </div>
-        <ChevronDown className={`w-4 h-4 text-grey-04 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-      <div className={`grid transition-all duration-300 ease-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-        <div className="overflow-hidden">
-          <p className="px-6 pb-6 pl-[3.25rem] text-grey-04 text-sm leading-relaxed">{a}</p>
-        </div>
-      </div>
-    </div>
-  );
-}

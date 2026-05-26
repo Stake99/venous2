@@ -6,12 +6,12 @@ import { useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const links = [
-  { label: 'About',     href: '#about' },
-  { label: 'Values',    href: '#values' },
-  { label: 'Services',  href: '#services' },
-  { label: 'Process',   href: '#process' },
-  { label: 'Team',      href: '#team' },
-  { label: 'FAQs',      href: '#faqs' },
+  { label: 'About',     href: '/#about' },
+  { label: 'Values',    href: '/#values' },
+  { label: 'Services',  href: '/#services' },
+  { label: 'Process',   href: '/#process' },
+  { label: 'Team',      href: '/#team' },
+  { label: 'FAQs',      href: '/#faqs' },
 ];
 
 export default function Navigation() {
@@ -39,7 +39,7 @@ export default function Navigation() {
         </nav>
 
         <div className="hidden lg:flex">
-          <Link href="#contact" className="btn-primary">
+          <Link href="/#contact" className="btn-primary">
             <span className="holo-bg w-7 h-7 rounded-full flex items-center justify-center">
               <ArrowUpRight className="w-3.5 h-3.5 text-grey-01" />
             </span>
@@ -69,7 +69,7 @@ export default function Navigation() {
                 {l.label}
               </Link>
             ))}
-            <Link href="#contact" onClick={() => setOpen(false)} className="btn-primary mt-2 self-start">
+            <Link href="/#contact" onClick={() => setOpen(false)} className="btn-primary mt-2 self-start">
               <span className="holo-bg w-7 h-7 rounded-full flex items-center justify-center">
                 <ArrowUpRight className="w-3.5 h-3.5 text-grey-01" />
               </span>
