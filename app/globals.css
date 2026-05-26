@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --primary-black: #000000;
-  --primary-gray: #1a1a1a;
+  --background: #26262e;
+  --foreground: #ffffff;
+  --primary-black: #1a1a20;
+  --primary-gray: #34343e;
   --light-gray: #f5f5f5;
-  --accent-gray: #333333;
+  --accent-gray: #4c4c58;
+  --surface: #34343e;
+  --surface-2: #3c3c47;
+  --border: rgba(255,255,255,0.12);
+  --glow-1: #6366f1;
+  --glow-2: #8b5cf6;
   --font-body: var(--font-poppins);
   --font-heading: var(--font-playfair);
   --font-sans: var(--font-inter);
@@ -50,108 +55,352 @@ h1, h2, h3, h4, h5, h6 {
   scroll-behavior: smooth;
 }
 
-/* Custom Animations */
+/* ─── Entrance animations ─────────────────────────────────── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
 }
 
+@keyframes fadeInBlur {
+  from { opacity: 0; filter: blur(8px); }
+  to   { opacity: 1; filter: blur(0);   }
+}
+
+/* ─── Background animations ──────────────────────────────── */
 @keyframes blob {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -50px) scale(1.1); }
+  66%       { transform: translate(-20px, 20px) scale(0.9); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-20px); }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
 }
 
-.animate-blob {
-  animation: blob 7s infinite;
+/* ─── Glow button rotation ───────────────────────────────── */
+@keyframes glowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* ─── Grid lines fade in ─────────────────────────────────── */
+@keyframes gridLineFade {
+  from { opacity: 0; transform: scaleY(0); }
+  to   { opacity: 1; transform: scaleY(1); }
 }
 
-.animation-delay-1000 {
-  animation-delay: 1s;
+/* ─── Marquee scroll ─────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+/* ─── Ellipse ring pulse ─────────────────────────────────── */
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.3;  transform: scale(1.03); }
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+/* ─── Utility classes ────────────────────────────────────── */
+.animate-blob    { animation: blob 7s infinite; }
+.animate-float   { animation: float 6s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+.perspective-1000 { perspective: 1000px; }
+
+/* ─── Parallax GPU hints ─────────────────────────────────── */
+.parallax-slow, .parallax-medium, .parallax-fast {
+  will-change: transform;
+  transition: transform 0.05s linear;
 }
 
-.perspective-1000 {
-  perspective: 1000px;
+/* ─── Dark surface card ──────────────────────────────────── */
+.card-dark {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
 }
 
-/* Smooth transitions for all interactive elements */
+.card-dark-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+}
+
+/* ─── Glow button ────────────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 0.875rem 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-glow:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 32px rgba(139,92,246,0.5);
+}
+
+.btn-glow-border {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 0.875rem 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.btn-glow-border:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.05);
+  transform: scale(1.04);
+}
+
+/* ─── Rotating glow ring on buttons ─────────────────────── */
+.glow-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, transparent 0%, #8b5cf6 20%, transparent 40%);
+  animation: glowRotate 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.btn-glow:hover .glow-ring,
+.btn-glow-border:hover .glow-ring {
+  opacity: 1;
+}
+
+/* ─── Gradient text ──────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, #e2e8f0 0%, #a78bfa 60%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Grid line overlay ──────────────────────────────────── */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  z-index: 0;
+}
+
+.grid-line-v {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.04) 80%, transparent);
+}
+
+/* ─── Concentric ellipse rings ───────────────────────────── */
+.ellipse-rings {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ellipse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+/* ─── Glowing divider ────────────────────────────────────── */
+.glow-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.glow-divider-line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(139,92,246,0.6));
+}
+
+.glow-divider-line.right {
+  background: linear-gradient(to left, transparent, rgba(139,92,246,0.6));
+}
+
+/* ─── Section label pill ─────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(139,92,246,0.12);
+  border: 1px solid rgba(139,92,246,0.25);
+  color: #a78bfa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #26262e; }
+::-webkit-scrollbar-thumb { background: #54545f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6a6a76; }
+
+/* ─── Glass morphism ─────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── Smooth transitions ─────────────────────────────────── */
 button, a, input, select, textarea {
   transition: all 0.3s ease;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+/* ─── Animated counter shimmer ───────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.text-shimmer {
+  background: linear-gradient(90deg, #fff 0%, #a78bfa 40%, #fff 60%, #a78bfa 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #000000;
-  border-radius: 5px;
+/* ─── Scan line sweep ────────────────────────────────────── */
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent);
+  animation: scanLine 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 9999;
 }
 
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* ─── Dot grid background ────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* 3D card effect */
-.card-3d {
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
+/* ─── Noise texture overlay ──────────────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
 
-.card-3d:hover {
-  transform: rotateY(5deg) rotateX(5deg);
+/* ─── Stagger children helper ────────────────────────────── */
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 80ms; }
+.stagger > *:nth-child(3) { animation-delay: 160ms; }
+.stagger > *:nth-child(4) { animation-delay: 240ms; }
+.stagger > *:nth-child(5) { animation-delay: 320ms; }
+.stagger > *:nth-child(6) { animation-delay: 400ms; }
+
+/* ─── Icon glow ──────────────────────────────────────────── */
+.icon-glow {
+  filter: drop-shadow(0 0 8px rgba(139,92,246,0.6));
 }
+
+/* ─── Pulse ring ─────────────────────────────────────────── */
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(139,92,246,0.4);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+/* ─── Typewriter cursor ──────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #a78bfa;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Number counter animation ───────────────────────────── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.count-up {
+  animation: countUp 0.8s ease-out both;
+}
+
+

@@ -1,319 +1,199 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock, MessageSquare, Send, CheckCircle2, ChevronDown } from 'lucide-react';
+import ParallaxBackground from '@/components/ParallaxBackground';
+
+interface FadeInProps { children: React.ReactNode; delay?: number; className?: string; direction?: 'up'|'left'|'right'|'none'; }
+function FadeIn({ children, delay = 0, className = '', direction = 'up' }: FadeInProps) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const offsets: Record<string, { y?: number; x?: number }> = { up: { y: 40 }, left: { x: -40 }, right: { x: 40 }, none: {} };
+  return (
+    <motion.div ref={ref} className={className}
+      initial={{ opacity: 0, filter: 'blur(6px)', ...offsets[direction] }}
+      animate={inView ? { opacity: 1, filter: 'blur(0px)', y: 0, x: 0 } : {}}
+      transition={{ duration: 0.65, delay, ease: [0.25, 0.1, 0.25, 1] }}>
+      {children}
+    </motion.div>
+  );
+}
 
 export default function ContactPage() {
-  const [scrollY, setScrollY] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
     setSubmitted(true);
-    
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     }, 3000);
   };
 
+  const inputClass = 'w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50 focus:bg-white/[0.06] transition-all duration-200 text-sm';
+
   return (
-    <div className="bg-white overflow-hidden">
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
-            style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
-          />
-          <div 
-            className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
-            style={{ transform: `translate(${-scrollY * 0.1}px, ${scrollY * 0.08}px)` }}
-          />
+    <div className="bg-[#26262e] text-white overflow-hidden">
+      {/* Scan line */}
+      <div className="scan-line" />
+
+      {/* ── PAGE PARALLAX BACKGROUND ─────────────────────────── */}
+      <ParallaxBackground />
+
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="ellipse-rings">
+          {[300, 500].map((size, i) => (
+            <div key={i} className="ellipse-ring" style={{ width: size, height: size, animationDelay: `${i}s` }} />
+          ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
-          <div className="inline-block mb-6">
-            <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
-              💬 Get in Touch
-            </span>
-          </div>
-          <h1 
-            className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
-            style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-          >
-            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Us</span>
-          </h1>
-          <p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-            style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-          >
-            Have questions? We're here to help. Reach out and we'll respond as soon as possible.
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 pb-20 text-center">
+          <FadeIn>
+            <div className="inline-flex mb-8">
+              <span className="section-label">
+                <MessageSquare className="w-3.5 h-3.5" />
+                Get in Touch
+              </span>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              Contact <span className="text-gradient">Us</span>
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-white/50 text-lg max-w-xl mx-auto">
+              Have questions? We're here to help. Reach out and we'll respond as soon as possible.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Contact Information & Form */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
-        </div>
+      {/* ── CONTACT BODY ─────────────────────────────────────── */}
+      <section className="relative py-24 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-600/8 rounded-full filter blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div>
-              {/* Clinic Image */}
-              <div className="relative h-64 rounded-3xl overflow-hidden shadow-2xl mb-8 transform hover:scale-105 transition-all duration-500">
-                <Image
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
-                  alt="Venous Lounge Medical Center"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-blue-900/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Visit Our Clinic</h3>
-                  <p className="text-white/90">Modern facilities in Phahameng, Bloemfontein</p>
+
+            {/* Left — info */}
+            <FadeIn direction="left">
+              {/* Clinic image */}
+              <div className="relative h-56 rounded-2xl overflow-hidden border border-white/[0.08] mb-10 group">
+                <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Venous Lounge" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#26262e]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5">
+                  <div className="text-white font-semibold">Visit Our Clinic</div>
+                  <div className="text-white/40 text-sm">Modern facilities in Phahameng, Bloemfontein</div>
                 </div>
               </div>
-              
-              <div className="inline-block mb-6">
-                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
-                  📍 Our Location
+
+              <div className="glow-divider justify-start mb-6">
+                <span className="section-label">
+                  <MapPin className="w-3 h-3" />
+                  Our Location
                 </span>
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">
-                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-purple-400">Connect</span>
+              <h2 className="text-3xl font-bold text-white mb-8">
+                Let's <span className="text-gradient-subtle">Connect</span>
               </h2>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    icon: '📍',
-                    title: 'Address',
-                    content: '6571 Dr Lebona Street\nPhahameng\nBloemfontein\nSouth Africa',
-                    gradient: 'from-gray-800 to-black',
-                  },
-                  {
-                    icon: '📞',
-                    title: 'Phone',
-                    content: '+27 51 447 9589',
-                    gradient: 'from-green-400 to-green-600',
-                  },
-                  {
-                    icon: '✉️',
-                    title: 'Email',
-                    content: 'dr.sesingsurg@gmail.com',
-                    gradient: 'from-purple-400 to-purple-600',
-                  },
-                  {
-                    icon: '🕐',
-                    title: 'Hours',
-                    content: 'Monday - Friday: 08:00 AM - 10:00 PM\nSaturday - Sunday: 08:00 AM - 01:00 PM',
-                    gradient: 'from-orange-400 to-orange-600',
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="group relative"
-                    style={{
-                      animation: `fadeInUp 0.6s ease-out ${index * 100}ms both`,
-                    }}
-                  >
-                    <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
-                      {/* Gradient Background on Hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                      
-                      {/* Content */}
-                      <div className="relative z-10 flex items-start space-x-4">
-                        <div className="text-5xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                          {item.icon}
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
-                            {item.title}
-                          </h3>
-                          <p className="text-gray-600 group-hover:text-white whitespace-pre-line transition-colors duration-300">
-                            {item.content}
-                          </p>
-                        </div>
-                      </div>
 
-                      {/* Decorative Element */}
-                      <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+              <div className="space-y-4">
+                {[
+                  { Icon: MapPin, title: 'Address', content: '6571 Dr Lebona Street, Phahameng, Bloemfontein, South Africa' },
+                  { Icon: Phone,   title: 'Phone',   content: '+27 51 447 9589', href: 'tel:+27514479589' },
+                  { Icon: Mail,    title: 'Email',   content: 'dr.sesingsurg@gmail.com', href: 'mailto:dr.sesingsurg@gmail.com' },
+                  { Icon: Clock,   title: 'Hours',   content: 'Mon–Fri: 08:00–22:00 · Sat–Sun: 08:00–13:00' },
+                ].map((item, i) => (
+                  <motion.div key={i} className="card-dark p-5 flex items-start gap-4 hover:border-violet-500/20 transition-all duration-300 group"
+                    initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
+                      <item.Icon className="w-4 h-4 text-violet-400" />
                     </div>
-                  </div>
+                    <div>
+                      <div className="text-white/30 text-xs uppercase tracking-wider mb-1">{item.title}</div>
+                      {item.href
+                        ? <a href={item.href} className="text-white/70 hover:text-white text-sm transition-colors">{item.content}</a>
+                        : <div className="text-white/70 text-sm">{item.content}</div>}
+                    </div>
+                  </motion.div>
                 ))}
               </div>
 
-              {/* Map Placeholder */}
-              <div 
-                className="mt-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-64 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group"
-                style={{
-                  animation: 'fadeInUp 0.6s ease-out 400ms both',
-                }}
-              >
+              {/* Map placeholder */}
+              <div className="mt-6 card-dark h-48 flex items-center justify-center rounded-2xl">
                 <div className="text-center">
-                  <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">🗺️</div>
-                  <p className="text-gray-500 font-semibold">Interactive Map Location</p>
+                  <MapPin className="w-12 h-12 text-violet-400/30 mx-auto mb-3" />
+                  <p className="text-white/30 text-sm">Interactive Map Location</p>
                 </div>
               </div>
-            </div>
+            </FadeIn>
 
-            {/* Contact Form */}
-            <div>
-              <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 transform hover:shadow-3xl transition-all duration-500">
-                <div className="flex items-center mb-8">
-                  <div className="text-4xl mr-4">📝</div>
-                  <h2 className="text-3xl font-bold text-gray-900">Send us a Message</h2>
-                </div>
-                
+            {/* Right — form */}
+            <FadeIn direction="right" delay={0.15}>
+              <div className="card-dark p-8 md:p-10">
+                <h2 className="text-2xl font-bold text-white mb-8">Send us a Message</h2>
+
                 {submitted && (
-                  <div 
-                    className="mb-6 bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 rounded-2xl p-4"
-                    style={{ animation: 'fadeInUp 0.5s ease-out' }}
+                  <motion.div className="mb-6 rounded-xl border border-green-500/20 bg-green-500/10 p-4 flex items-center gap-3"
+                    initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
                   >
-                    <div className="flex items-center">
-                      <div className="text-4xl mr-3">✅</div>
-                      <div>
-                        <h3 className="text-green-800 font-bold">Message Sent!</h3>
-                        <p className="text-green-700">We'll get back to you soon.</p>
-                      </div>
+                    <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                    <div>
+                      <div className="text-green-400 font-semibold text-sm">Message Sent!</div>
+                      <div className="text-green-400/60 text-xs">We'll get back to you soon.</div>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="group">
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
-                      placeholder="John Doe"
-                    />
-                  </div>
-
-                  <div className="group">
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
-                      placeholder="john.doe@example.com"
-                    />
-                  </div>
-
-                  <div className="group">
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  <div className="group">
-                    <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Subject *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {[
+                    { id: 'name', label: 'Full Name', type: 'text', placeholder: 'John Doe', required: true },
+                    { id: 'email', label: 'Email Address', type: 'email', placeholder: 'john@example.com', required: true },
+                    { id: 'phone', label: 'Phone Number', type: 'tel', placeholder: '+27 51 000 0000', required: false },
+                  ].map((f, idx) => (
+                    <motion.div key={f.id}
+                      initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }} transition={{ delay: idx * 0.05 }}
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="appointment">Appointment Question</option>
-                      <option value="billing">Billing Question</option>
-                      <option value="medical">Medical Records</option>
-                      <option value="feedback">Feedback</option>
-                      <option value="other">Other</option>
+                      <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">{f.label} {f.required && '*'}</label>
+                      <input type={f.type} name={f.id} required={f.required} value={formData[f.id as keyof typeof formData]} onChange={handleChange} className={inputClass} placeholder={f.placeholder} />
+                    </motion.div>
+                  ))}
+                  <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
+                    <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Subject *</label>
+                    <select name="subject" required value={formData.subject} onChange={handleChange} className={inputClass}>
+                      <option value="" className="bg-[#34343e]">Select a subject</option>
+                      {['General Inquiry', 'Appointment Question', 'Billing Question', 'Medical Records', 'Feedback', 'Other'].map(o => (
+                        <option key={o} value={o.toLowerCase()} className="bg-[#34343e]">{o}</option>
+                      ))}
                     </select>
-                  </div>
-
-                  <div className="group">
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300 group-hover:border-gray-300"
-                      placeholder="How can we help you?"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="group w-full bg-gradient-to-r from-black to-purple-600 text-white px-8 py-5 rounded-full hover:from-gray-900 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:scale-105"
-                  >
-                    <span className="flex items-center justify-center">
-                      Send Message
-                      <svg className="w-6 h-6 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+                    <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Message *</label>
+                    <textarea name="message" required rows={5} value={formData.message} onChange={handleChange} className={inputClass} placeholder="How can we help you?" />
+                  </motion.div>
+                  <button type="submit" className="btn-glow w-full justify-center mt-2 group">
+                    <div className="glow-ring" />
+                    <span className="relative z-10">Send Message</span>
+                    <Send className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </form>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>

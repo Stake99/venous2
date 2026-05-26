@@ -2,563 +2,375 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import {
+  HeartPulse, Shield, CreditCard, Users, Award, Stethoscope,
+  ChevronDown, ArrowRight, CalendarDays, UserCheck, CheckCircle2,
+} from 'lucide-react';
+import ParallaxBackground from '@/components/ParallaxBackground';
+
+interface FadeInProps { children: React.ReactNode; delay?: number; className?: string; direction?: 'up'|'left'|'right'|'none'; }
+function FadeIn({ children, delay = 0, className = '', direction = 'up' }: FadeInProps) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const offsets: Record<string, { y?: number; x?: number }> = { up: { y: 40 }, left: { x: -40 }, right: { x: 40 }, none: {} };
+  return (
+    <motion.div ref={ref} className={className}
+      initial={{ opacity: 0, filter: 'blur(6px)', ...offsets[direction] }}
+      animate={inView ? { opacity: 1, filter: 'blur(0px)', y: 0, x: 0 } : {}}
+      transition={{ duration: 0.65, delay, ease: [0.25, 0.1, 0.25, 1] }}>
+      {children}
+    </motion.div>
+  );
+}
 
 export default function AboutPage() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <div className="bg-white overflow-hidden">
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div 
-            className="absolute top-20 left-10 w-72 h-72 bg-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"
-            style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
-          />
-          <div 
-            className="absolute top-40 right-10 w-72 h-72 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"
-            style={{ transform: `translate(${-scrollY * 0.1}px, ${scrollY * 0.08}px)` }}
-          />
-          <div 
-            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-gray-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"
-            style={{ transform: `translate(${scrollY * 0.05}px, ${-scrollY * 0.1}px)` }}
-          />
+    <div className="bg-[#26262e] text-white overflow-hidden">
+      <div className="scan-line" />
+      <ParallaxBackground />
+
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+
+        {/* Concentric rings */}
+        <div className="ellipse-rings">
+          {[300, 500, 700].map((size, i) => (
+            <div key={i} className="ellipse-ring" style={{ width: size, height: size, animationDelay: `${i}s` }} />
+          ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="text-center mb-6">
-            <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6">
-              About <span className="text-black">The Venous Lounge</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 pb-20 text-center">
+          <FadeIn className="inline-flex mb-8">
+            <span className="section-label"><HeartPulse className="w-3.5 h-3.5" />Our Practice</span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              About <span className="text-gradient">The Venous Lounge</span>
             </h1>
-            <p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-            >
-              Dr Sesing Surgery & Aesthetics - Specialising in vein and general surgical care with 
-              a strong emphasis on patient safety, quality, and trust.
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed">
+              Dr Sesing Surgery & Aesthetics — specialising in vein and general surgical care
+              with a strong emphasis on patient safety, quality, and trust.
             </p>
-          </div>
+          </FadeIn>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+          <ChevronDown className="w-5 h-5 text-white/30" />
+        </motion.div>
+      </section>
+
+      {/* ── CLINIC IMAGES ────────────────────────────────────── */}
+      <section className="relative py-20 border-t border-white/[0.06] overflow-hidden">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              { src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80', label: 'Modern Reception',   sub: 'Welcoming lounge atmosphere' },
+              { src: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80', label: 'Private Rooms',      sub: 'Comfortable consultation spaces' },
+              { src: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80', label: 'Advanced Equipment', sub: 'Latest medical technology' },
+            ].map((img, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="relative h-64 rounded-2xl overflow-hidden border border-white/[0.08] group">
+                  <Image src={img.src} alt={img.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#26262e]/90 via-[#26262e]/20 to-transparent" />
+                  <div className="absolute bottom-5 left-5">
+                    <div className="text-white font-semibold">{img.label}</div>
+                    <div className="text-white/40 text-sm">{img.sub}</div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Mission & Vision - 3D Cards */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Clinic Images Showcase */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-              <Image
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80"
-                alt="Modern clinic reception"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <div>
-                  <h3 className="text-white font-bold text-xl mb-1">Modern Reception</h3>
-                  <p className="text-white/90 text-sm">Welcoming lounge atmosphere</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-              <Image
-                src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80"
-                alt="Private consultation rooms"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <div>
-                  <h3 className="text-white font-bold text-xl mb-1">Private Rooms</h3>
-                  <p className="text-white/90 text-sm">Comfortable consultation spaces</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative h-72 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-              <Image
-                src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80"
-                alt="Advanced medical equipment"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <div>
-                  <h3 className="text-white font-bold text-xl mb-1">Advanced Equipment</h3>
-                  <p className="text-white/90 text-sm">Latest medical technology</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* ── MISSION & VISION ─────────────────────────────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-violet-600/8 rounded-full filter blur-[120px] pointer-events-none" />
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-black font-semibold text-sm uppercase tracking-wider">Who We Are</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              The Venous Lounge - <span className="text-black">Dr Sesing Surgery & Aesthetics</span>
+            <div className="glow-divider mb-6">
+              <div className="glow-divider-line" />
+              <span className="section-label">Who We Are</span>
+              <div className="glow-divider-line right" />
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              The Venous Lounge —{' '}
+              <span className="text-gradient-subtle">Dr Sesing Surgery & Aesthetics</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A Bloemfontein-based medical-aesthetic practice specialising in vein and general surgical care, 
-              with a strong emphasis on patient safety and quality.
+            <p className="text-white/40 max-w-2xl mx-auto">
+              A Bloemfontein-based medical-aesthetic practice specialising in vein and general surgical care.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
             {[
-              {
-                title: 'Your Health, our Priority Always',
-                icon: '💙',
-                gradient: 'from-gray-500 to-black',
-                description: 'We prioritise medical-care standards over purely cosmetic or lifestyle-focused services. Our practice is built on trust, reliability, and clinical excellence.',
-              },
-              {
-                title: 'All Major Medical Aids Accepted',
-                icon: '💳',
-                gradient: 'from-purple-500 to-black',
-                description: 'We work with most South African medical-aid schemes, making quality vein and surgical treatment more accessible to insured patients and their families.',
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="group relative"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 200}ms both`,
-                }}
-              >
-                <div className="relative bg-white rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden border border-gray-100">
-                  {/* Gradient Background on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="text-7xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                      {item.icon}
-                    </div>
-                    <h2 className="text-3xl font-bold text-gray-900 group-hover:text-white mb-6 transition-colors duration-300">
-                      {item.title}
-                    </h2>
-                    <p className="text-gray-600 group-hover:text-white text-lg leading-relaxed transition-colors duration-300">
-                      {item.description}
-                    </p>
+              { Icon: HeartPulse, title: 'Your Health, our Priority Always', desc: 'We prioritise medical-care standards over purely cosmetic or lifestyle-focused services. Our practice is built on trust, reliability, and clinical excellence.' },
+              { Icon: CreditCard, title: 'All Major Medical Aids Accepted',  desc: 'We work with most South African medical-aid schemes, making quality vein and surgical treatment more accessible to insured patients and their families.' },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <motion.div
+                  className="card-dark p-10 hover:border-violet-500/25 transition-all duration-300 group"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center mb-6 group-hover:bg-violet-600/20 transition-colors">
+                    <item.Icon className="w-6 h-6 text-violet-400" />
                   </div>
-
-                  {/* Decorative Elements */}
-                  <div className="absolute -bottom-12 -right-12 w-40 h-40 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gray-100 rounded-full filter blur-2xl opacity-50" />
-                </div>
-              </div>
+                  <h3 className="text-white text-2xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-white/40 leading-relaxed">{item.desc}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
 
-          {/* Services and Expertise Section */}
-          <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-12 shadow-xl">
-            <div className="text-center mb-10">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Expertise</h3>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Combining general surgical skills with specialized venous treatments to deliver 
-                comprehensive, family-oriented care
-              </p>
+            <div className="card-dark p-10">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl font-bold text-white mb-3">Our Expertise</h3>
+                <p className="text-white/40 max-w-xl mx-auto">Combining general surgical skills with specialised venous treatments</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {[
+                  { Icon: Stethoscope, title: 'Vein Specialists',   desc: 'Minimally invasive procedures for varicose and spider veins' },
+                  { Icon: Award,      title: 'General Surgery',    desc: 'Broader surgical expertise for comprehensive patient care' },
+                  { Icon: Users,      title: 'Family-Oriented', desc: 'Reliable services for you and your loved ones' },
+                ].map((item, i) => (
+                  <FadeIn key={i} delay={i * 0.08}>
+                    <motion.div className="card-dark-2 p-6 text-center hover:border-violet-500/20 transition-all duration-300 group"
+                      whileHover={{ y: -2 }}
+                    >
+                      <div className="w-12 h-12 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-violet-600/20 transition-colors">
+                        <item.Icon className="w-5 h-5 text-violet-400" />
+                      </div>
+                      <h4 className="text-white font-semibold mb-2">{item.title}</h4>
+                      <p className="text-white/40 text-sm">{item.desc}</p>
+                    </motion.div>
+                  </FadeIn>
+                ))}
+              </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: '🩺',
-                  title: 'Vein Specialists',
-                  description: 'Minimally invasive procedures for varicose and spider veins',
-                },
-                {
-                  icon: '🏥',
-                  title: 'General Surgery',
-                  description: 'Broader surgical expertise for comprehensive patient care',
-                },
-                {
-                  icon: '👨‍👩‍👧‍👦',
-                  title: 'Family-Oriented',
-                  description: 'Reliable services for you and your loved ones',
-                },
-              ].map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl p-6 shadow-md text-center transform hover:-translate-y-2 transition-all duration-300">
-                  <div className="text-5xl mb-4">{item.icon}</div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h4>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-300 rounded-full filter blur-3xl" />
-        </div>
+      {/* ── OUR STORY ────────────────────────────────────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-600/8 rounded-full filter blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div>
-              <div className="inline-block mb-6">
-                <span className="bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-semibold">
-                  🏥 Our Practice
-                </span>
+            <div style={{ animation: 'fadeInUp 0.8s ease-out both' }}>
+              <div className="glow-divider justify-start mb-6">
+                <span className="section-label">Our Approach</span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-                A Medically Grounded <span className="text-black">Approach</span>
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+                A Medically Grounded{' '}
+                <span className="text-gradient-subtle">Approach</span>
               </h2>
-              <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
-                <p>
-                  The Venous Lounge operates as both a clinical and comfort-oriented environment for vein 
-                  and surgical treatments. Our "lounge" concept combines professional medical care with a 
-                  welcoming atmosphere that puts patients at ease.
-                </p>
-                <p>
-                  We focus on trust, reliability, and general-surgical expertise, rather than heavy marketing 
-                  language or flashy aesthetics. This medically grounded image reflects our commitment to 
-                  quality care above all else.
-                </p>
-                <p>
-                  Our practice is designed for continuity of care - serving whole families and groups, not 
-                  just individual patients. We build long-term relationships based on consistent, reliable 
-                  medical service.
-                </p>
+              <div className="space-y-5 text-white/50 leading-relaxed">
+                <p>The Venous Lounge operates as both a clinical and comfort-oriented environment for vein and surgical treatments. Our "lounge" concept combines professional medical care with a welcoming atmosphere.</p>
+                <p>We focus on trust, reliability, and general-surgical expertise, rather than heavy marketing language. This medically grounded image reflects our commitment to quality care above all else.</p>
+                <p>Our practice is designed for continuity of care — serving whole families and groups, not just individual patients.</p>
               </div>
             </div>
 
-            {/* Right Content - Key Features */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {[
-                {
-                  icon: '🏥',
-                  title: 'Clinical Excellence',
-                  description: 'Professional medical standards in a comfortable lounge setting',
-                  color: 'blue',
-                },
-                {
-                  icon: '👨‍⚕️',
-                  title: 'General Surgical Foundation',
-                  description: 'Broader surgical skills supporting specialized vein treatments',
-                  color: 'purple',
-                },
-                {
-                  icon: '💳',
-                  title: 'Medical Aid Friendly',
-                  description: 'Working with most South African medical-aid schemes',
-                  color: 'green',
-                },
-                {
-                  icon: '👨‍👩‍👧‍👦',
-                  title: 'Family-Oriented Care',
-                  description: 'Reliable services for you and your loved ones',
-                  color: 'pink',
-                },
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                  style={{
-                    animation: `fadeInUp 0.6s ease-out ${index * 150}ms both`,
-                  }}
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className="text-5xl">{feature.icon}</div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
+                { Icon: Shield,     title: 'Clinical Excellence',          desc: 'Professional medical standards in a comfortable lounge setting' },
+                { Icon: Stethoscope, title: 'General Surgical Foundation', desc: 'Broader surgical skills supporting specialised vein treatments' },
+                { Icon: CreditCard, title: 'Medical Aid Friendly',         desc: 'Working with most South African medical-aid schemes' },
+                { Icon: Users,      title: 'Family-Oriented Care',       desc: 'Reliable services for you and your loved ones' },
+              ].map((f, i) => (
+                <FadeIn key={i} delay={i * 0.08}>
+                  <motion.div className="card-dark p-5 flex items-start gap-4 hover:border-violet-500/20 transition-all duration-300 group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
+                      <f.Icon className="w-4 h-4 text-violet-400" />
                     </div>
-                  </div>
-                </div>
+                    <div>
+                      <div className="text-white font-semibold">{f.title}</div>
+                      <div className="text-white/40 text-sm mt-0.5">{f.desc}</div>
+                    </div>
+                  </motion.div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      {/* ── CORE VALUES ──────────────────────────────────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-black font-semibold text-sm uppercase tracking-wider">Our Values</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              The Principles That <span className="text-black">Guide Us</span>
+          <div className="text-center mb-16">
+            <div className="glow-divider mb-6">
+              <div className="glow-divider-line" />
+              <span className="section-label">Our Values</span>
+              <div className="glow-divider-line right" />
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              The Principles That <span className="text-gradient-subtle">Guide Us</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Patient safety, trust, and quality care in everything we do
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              {
-                title: 'Patient Safety',
-                description: 'Medical-care standards prioritized over cosmetic trends',
-                icon: '🛡️',
-                gradient: 'from-gray-800 to-black',
-              },
-              {
-                title: 'Trust & Reliability',
-                description: 'Medically grounded approach, not flashy marketing',
-                icon: '🤝',
-                gradient: 'from-green-400 to-green-600',
-              },
-              {
-                title: 'Quality Care',
-                description: 'Clinical excellence in a comfortable lounge setting',
-                icon: '⭐',
-                gradient: 'from-purple-400 to-purple-600',
-              },
-              {
-                title: 'Accessibility',
-                description: 'Medical aid acceptance and family-oriented services',
-                icon: '💳',
-                gradient: 'from-pink-400 to-pink-600',
-              },
-            ].map((value, index) => (
-              <div
-                key={index}
-                className="group relative"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 100}ms both`,
-                }}
-              >
-                <div className="relative bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 overflow-hidden">
-                  {/* Gradient Background on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                      {value.icon}
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-white mb-3 transition-colors duration-300">
-                      {value.title}
-                    </h3>
-                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">
-                      {value.description}
-                    </p>
+              { Icon: Shield,     title: 'Patient Safety',   desc: 'Medical-care standards prioritised over cosmetic trends' },
+              { Icon: UserCheck,  title: 'Trust & Reliability', desc: 'Medically grounded approach, not flashy marketing' },
+              { Icon: Award,      title: 'Quality Care',      desc: 'Clinical excellence in a comfortable lounge setting' },
+              { Icon: CreditCard, title: 'Accessibility',     desc: 'Medical aid acceptance and family-oriented services' },
+            ].map((v, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <motion.div
+                  className="card-dark p-7 text-center hover:border-violet-500/25 transition-all duration-300 group"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-5 group-hover:bg-violet-600/20 transition-colors">
+                    <v.Icon className="w-5 h-5 text-violet-400" />
                   </div>
-
-                  {/* Decorative Circle */}
-                  <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-                </div>
-              </div>
+                  <h3 className="text-white font-semibold mb-2">{v.title}</h3>
+                  <p className="text-white/40 text-sm">{v.desc}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
-        </div>
+      {/* ── TEAM ─────────────────────────────────────────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[700px] h-[300px] bg-violet-600/8 rounded-full filter blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-black font-semibold text-sm uppercase tracking-wider">Our Team</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
-              Meet Our <span className="text-black">Dedicated Team</span>
+          <div className="text-center mb-16">
+            <div className="glow-divider mb-6">
+              <div className="glow-divider-line" />
+              <span className="section-label">Our Team</span>
+              <div className="glow-divider-line right" />
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              Meet Our <span className="text-gradient-subtle">Dedicated Team</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experienced professionals committed to your health and well-being
-            </p>
           </div>
 
-          {/* Team Members Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {[
               {
-                name: 'Dr Mpho Sesing',
-                role: 'General Practitioner',
-                image: '/image/general_practitioner.jpg',
-                description: 'Expert in general medicine and primary care. Dedicated to providing comprehensive healthcare services with a focus on patient wellness and preventive care.',
-                specializations: [
-                  'General Medicine',
-                  'Primary Care',
-                  'Preventive Healthcare',
-                  'Patient Wellness',
-                ],
-                gradient: 'from-gray-800 to-black',
+                name: 'Dr Mpho Sesing', role: 'General Practitioner', image: '/image/general_practitioner.jpg',
+                desc: 'Expert in general medicine and primary care. Dedicated to providing comprehensive healthcare services with a focus on patient wellness.',
+                specs: ['General Medicine', 'Primary Care', 'Preventive Healthcare', 'Patient Wellness'],
               },
               {
-                name: 'Mrs Rebaone Kgware',
-                role: 'Practice Manager',
-                image: '/image/Practice_manager.jpg',
-                description: 'Ensures smooth operations and exceptional patient experience. Coordinates all aspects of practice management to deliver quality care and service.',
-                specializations: [
-                  'Practice Operations',
-                  'Patient Coordination',
-                  'Medical Aid Liaison',
-                  'Quality Assurance',
-                ],
-                gradient: 'from-purple-400 to-purple-600',
+                name: 'Mrs Rebaone Kgware', role: 'Practice Manager', image: '/image/Practice_manager.jpg',
+                desc: 'Ensures smooth operations and exceptional patient experience. Coordinates all aspects of practice management to deliver quality care.',
+                specs: ['Practice Operations', 'Patient Coordination', 'Medical Aid Liaison', 'Quality Assurance'],
               },
-            ].map((member, index) => (
-              <Link
-                key={index}
-                href="/booking"
-                className="group relative block"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 200}ms both`,
-                }}
-              >
-                <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden">
-                  {/* Gradient Background on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${member.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="grid grid-cols-1 gap-6">
-                      {/* Team Member Image */}
-                      <div className="relative h-80 rounded-2xl overflow-hidden">
-                        <Image
-                          src={member.image}
-                          alt={`${member.name} - ${member.role}`}
-                          fill
-                          className="object-cover transform group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            ].map((member, i) => (
+              <FadeIn key={i} delay={i * 0.15}>
+                <motion.div
+                  className="group card-dark overflow-hidden hover:border-violet-500/25 transition-all duration-300"
+                  whileHover={{ y: -4 }}
+                >
+                  <Link href="/booking" className="block">
+                    <div className="relative h-72 overflow-hidden">
+                      <Image src={member.image} alt={member.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-white text-xl font-bold mb-1">{member.name}</h3>
+                      <p className="text-violet-400 text-sm font-medium mb-4">{member.role}</p>
+                      <p className="text-white/40 text-sm leading-relaxed mb-5">{member.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {member.specs.map((s, j) => (
+                          <span key={j} className="text-xs px-3 py-1 rounded-full border border-white/[0.08] text-white/40">{s}</span>
+                        ))}
                       </div>
-
-                      {/* Team Member Info */}
-                      <div className="text-center">
-                        <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
-                          {member.name}
-                        </h3>
-                        <p className="text-black group-hover:text-white font-medium mb-4 text-lg transition-colors duration-300">
-                          {member.role}
-                        </p>
-                        <p className="text-gray-600 group-hover:text-white transition-colors duration-300 mb-6 leading-relaxed">
-                          {member.description}
-                        </p>
-
-                        {/* Specializations */}
-                        <div className="space-y-2 mb-6">
-                          {member.specializations.map((spec, idx) => (
-                            <div key={idx} className="flex items-center justify-center">
-                              <svg className="w-5 h-5 text-black group-hover:text-white mr-2 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                              </svg>
-                              <span className="text-gray-700 group-hover:text-white transition-colors duration-300">{spec}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Book Appointment Button */}
-                        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <span className="inline-block bg-white bg-opacity-20 text-white px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">
-                            Book Consultation →
-                          </span>
-                        </div>
+                      <div className="mt-6 text-violet-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2">
+                        Book Consultation
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute -bottom-12 -right-12 w-40 h-40 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-                </div>
-              </Link>
+                  </Link>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
 
-          {/* Credentials Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Credentials */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              {
-                icon: '🎓',
-                title: 'Qualified Professionals',
-                description: 'Extensive training and expertise',
-              },
-              {
-                icon: '⭐',
-                title: '15+ Years Experience',
-                description: 'Proven track record of success',
-              },
-              {
-                icon: '💙',
-                title: 'Patient-Centered',
-                description: 'Your health is our priority',
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${(index + 1) * 150}ms both`,
-                }}
-              >
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h4>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
+              { Icon: Award,      title: 'Qualified Professionals', desc: 'Extensive training and expertise' },
+              { Icon: HeartPulse, title: '15+ Years Experience',    desc: 'Proven track record of success' },
+              { Icon: UserCheck,  title: 'Patient-Centred',         desc: 'Your health is our priority' },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <motion.div className="card-dark p-6 text-center hover:border-violet-500/20 transition-all duration-300 group"
+                  whileHover={{ y: -2 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-violet-600/20 transition-colors">
+                    <item.Icon className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">{item.title}</h4>
+                  <p className="text-white/40 text-sm">{item.desc}</p>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section with 3D Effect */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black" />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      {/* ── STATS ────────────────────────────────────────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="ellipse-rings">
+          {[200, 400, 600].map((size, i) => (
+            <div key={i} className="ellipse-ring" style={{ width: size, height: size, animationDelay: `${i * 1.2}s` }} />
+          ))}
         </div>
-        
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[600px] h-[300px] bg-violet-600/10 rounded-full filter blur-[100px]" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-              Why Choose The Venous Lounge
+              Why Choose <span className="text-gradient-subtle">The Venous Lounge</span>
             </h2>
-            <p className="text-xl text-gray-100">
-              Specialized care with a commitment to excellence
-            </p>
           </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { number: '15+', label: 'Years Experience', icon: '⭐' },
-              { number: '1000+', label: 'Successful Procedures', icon: '✅' },
-              { number: '6 Days', label: 'Open Weekly', icon: '📅' },
-              { number: 'All', label: 'Major Medical Aids', icon: '💳' },
-            ].map((stat, index) => (
-              <div 
-                key={index} 
-                className="text-center transform hover:scale-110 transition-all duration-300 cursor-pointer"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${index * 100}ms both`,
-                }}
-              >
-                <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 hover:bg-opacity-20 transition-all duration-300">
-                  <div className="text-6xl mb-4">{stat.icon}</div>
-                  <div className="text-5xl lg:text-6xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-gray-100 font-medium text-lg">{stat.label}</div>
-                </div>
-              </div>
+              { Icon: Award,      number: '15+',  label: 'Years Experience' },
+              { Icon: CheckCircle2, number: '1000+',label: 'Successful Procedures' },
+              { Icon: CalendarDays, number: '6',    label: 'Days Open Weekly' },
+              { Icon: CreditCard, number: 'All',  label: 'Major Medical Aids' },
+            ].map((s, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <motion.div
+                  className="card-dark p-8 text-center hover:border-violet-500/25 transition-all duration-300 group"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-violet-600/20 transition-colors">
+                    <s.Icon className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div className="text-4xl font-bold text-white mb-2">{s.number}</div>
+                  <div className="text-white/40 text-sm">{s.label}</div>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full opacity-10 animate-float" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full opacity-10 animate-float animation-delay-2000" />
-        <div className="absolute top-1/2 right-20 w-16 h-16 bg-white rounded-full opacity-10 animate-float animation-delay-4000" />
       </section>
     </div>
   );
