@@ -26,7 +26,7 @@ export default function CursorGlow() {
     <motion.div
       aria-hidden
       style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed top-0 left-0 w-[40rem] h-[40rem] holo-bg opacity-[0.18] blur-3xl rounded-full z-0 mix-blend-multiply"
+      className="pointer-events-none fixed top-0 left-0 w-[40rem] h-[40rem] holo-bg opacity-40 blur-3xl rounded-full z-0"
     />
   );
 }

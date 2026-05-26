@@ -58,13 +58,16 @@ export default function Page() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const glowY     = useTransform(heroProgress, [0, 1], ['0%',   '60%']);
-  const eyebrowY  = useTransform(heroProgress, [0, 1], ['0%', '-200%']);
-  const headingY  = useTransform(heroProgress, [0, 1], ['0%',  '-80%']);
-  const subY      = useTransform(heroProgress, [0, 1], ['0%',  '-40%']);
-  const ctaY      = useTransform(heroProgress, [0, 1], ['0%',  '-20%']);
-  const cardY     = useTransform(heroProgress, [0, 1], ['0%',   '25%']);
-  const heroBlur  = useTransform(heroProgress, [0.4, 1], ['blur(0px)', 'blur(4px)']);
+  // px-based so movement is uniform regardless of element height
+  const glowY     = useTransform(heroProgress, [0, 1], [0,   300]);
+  const glowScale = useTransform(heroProgress, [0, 1], [1,   1.4]);
+  const eyebrowY  = useTransform(heroProgress, [0, 1], [0, -260]);
+  const headingY  = useTransform(heroProgress, [0, 1], [0, -180]);
+  const subY      = useTransform(heroProgress, [0, 1], [0, -120]);
+  const ctaY      = useTransform(heroProgress, [0, 1], [0,  -80]);
+  const cardY     = useTransform(heroProgress, [0, 1], [0,  200]);
+  const cardScale = useTransform(heroProgress, [0, 1], [1,  0.92]);
+  const heroBlur  = useTransform(heroProgress, [0.4, 1], ['blur(0px)', 'blur(6px)']);
   const heroFade  = useTransform(heroProgress, [0, 0.85], [1, 0]);
 
   // Process timeline — gradient line fills as you scroll through
@@ -80,8 +83,8 @@ export default function Page() {
       <section ref={heroRef} className="relative pt-12 lg:pt-20 pb-24 overflow-hidden">
         {/* Holographic glow */}
         <motion.div
-          style={{ y: glowY }}
-          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[64rem] h-[40rem] holo-soft-bg blur-3xl opacity-60 rounded-full"
+          style={{ y: glowY, scale: glowScale }}
+          className="pointer-events-none absolute top-0 left-1/2 w-[64rem] h-[40rem] holo-soft-bg blur-3xl opacity-70 rounded-full -translate-x-1/2"
         />
 
         <motion.div
@@ -126,7 +129,7 @@ export default function Page() {
           </motion.div>
 
           {/* Doctor card — drifts down slower than the text rises */}
-          <motion.div style={{ y: cardY }}>
+          <motion.div style={{ y: cardY, scale: cardScale }}>
             <FadeIn delay={0.2} className="mt-16 lg:mt-24">
               <div className="relative max-w-5xl mx-auto card-elevated overflow-hidden">
                 <div className="relative aspect-[16/9] bg-grey-08">
