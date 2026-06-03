@@ -43,7 +43,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="bg-[#26262e] text-white overflow-hidden">
+    <div className="bg-white text-ivory overflow-hidden">
       {/* Scan line */}
       <div className="scan-line" />
 
@@ -75,7 +75,7 @@ export default function ServicesPage() {
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-white/50 text-lg max-w-2xl mx-auto">
+            <p className="text-silver text-lg max-w-2xl mx-auto">
               Expert vein treatment and aesthetic services delivered with medical excellence and patient care.
             </p>
           </FadeIn>
@@ -85,12 +85,12 @@ export default function ServicesPage() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
           animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}
         >
-          <ChevronDown className="w-5 h-5 text-white/30" />
+          <ChevronDown className="w-5 h-5 text-ash" />
         </motion.div>
       </section>
 
       {/* ── FEATURED IMAGES ──────────────────────────────────── */}
-      <section className="relative py-16 border-t border-white/[0.06] overflow-hidden">
+      <section className="relative py-16 border-t border-graphite overflow-hidden">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -99,12 +99,12 @@ export default function ServicesPage() {
               { src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', title: 'Aesthetic Services', sub: 'Professional cosmetic treatments' },
             ].map((img, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="relative h-80 rounded-2xl overflow-hidden border border-white/[0.08] group">
+                <div className="relative h-80 rounded-2xl overflow-hidden border border-graphite group">
                   <Image src={img.src} alt={img.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#26262e]/90 via-[#26262e]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ivory/90 via-ivory/20 to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <h3 className="text-white text-2xl font-bold mb-1">{img.title}</h3>
-                    <p className="text-white/50 text-sm">{img.sub}</p>
+                    <p className="text-white/80 text-sm">{img.sub}</p>
                   </div>
                 </div>
               </FadeIn>
@@ -114,9 +114,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ── SERVICES GRID ────────────────────────────────────── */}
-      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+      <section className="relative py-32 overflow-hidden border-t border-graphite">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-violet-600/8 rounded-full filter blur-[120px] pointer-events-none" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold/8 rounded-full filter blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <FadeIn className="text-center mb-16">
@@ -128,7 +128,7 @@ export default function ServicesPage() {
               </span>
               <div className="glow-divider-line right" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-4">
               What We <span className="text-gradient-subtle">Offer</span>
             </h2>
           </FadeIn>
@@ -138,26 +138,26 @@ export default function ServicesPage() {
               <FadeIn key={i} delay={i * 0.07}>
                 <Link
                   href={s.href}
-                  className="group relative card-dark p-7 hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-1 block h-full"
+                  className="group relative card-dark p-7 hover:border-gold-bright/30 transition-all duration-300 hover:-translate-y-1 block h-full"
                 >
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600/0 to-violet-600/0 group-hover:from-violet-600/5 group-hover:to-indigo-600/5 transition-all duration-500" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold/0 to-gold/0 group-hover:from-gold/5 group-hover:to-gold/5 transition-all duration-500" />
                   <div className="relative z-10">
                     <div className="relative w-12 h-12 mb-5">
-                      <div className="absolute inset-0 rounded-xl bg-violet-600/10 border border-violet-500/20 group-hover:bg-violet-600/20 transition-colors" />
+                      <div className="absolute inset-0 rounded-xl bg-gold/10 border border-gold-bright/20 group-hover:bg-gold/20 transition-colors" />
                       <div className="pulse-ring rounded-xl opacity-0 group-hover:opacity-100" />
-                      <s.Icon className="absolute inset-0 m-auto w-5 h-5 text-violet-400 group-hover:icon-glow transition-all" />
+                      <s.Icon className="absolute inset-0 m-auto w-5 h-5 text-gold group-hover:icon-glow transition-all" />
                     </div>
-                    <h3 className="text-white font-semibold text-lg mb-2">{s.title}</h3>
-                    <p className="text-white/40 text-sm leading-relaxed mb-5">{s.desc}</p>
+                    <h3 className="text-ivory font-semibold text-lg mb-2">{s.title}</h3>
+                    <p className="text-silver text-sm leading-relaxed mb-5">{s.desc}</p>
                     <ul className="space-y-1.5 mb-5">
                       {s.features.map((f, j) => (
-                        <li key={j} className="flex items-center gap-2 text-white/35 text-xs">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-violet-500 flex-shrink-0" />
+                        <li key={j} className="flex items-center gap-2 text-silver text-xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                           {f}
                         </li>
                       ))}
                     </ul>
-                    <div className="flex items-center gap-2 text-violet-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0">
+                    <div className="flex items-center gap-2 text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0">
                       Learn more
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -170,29 +170,29 @@ export default function ServicesPage() {
       </section>
 
       {/* ── DR SESING ────────────────────────────────────────── */}
-      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+      <section className="relative py-32 overflow-hidden border-t border-graphite">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-600/8 rounded-full filter blur-[120px] pointer-events-none" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/8 rounded-full filter blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="left">
-              <div className="relative rounded-3xl overflow-hidden border border-white/[0.08]">
-                <div className="relative h-[520px] bg-[#f5f5f5]">
+              <div className="relative rounded-3xl overflow-hidden border border-graphite">
+                <div className="relative h-[520px] bg-[#f0ece6]">
                   <Image src="/image/venous.png" alt="Dr Sesing" fill className="object-contain p-12" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#26262e] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ivory via-transparent to-transparent" />
                 </div>
                 <motion.div
                   className="absolute top-6 right-6 glass rounded-2xl px-4 py-3 text-center"
                   initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }} transition={{ delay: 0.4, type: 'spring' }}
                 >
-                  <div className="text-2xl font-bold text-white">15+</div>
-                  <div className="text-white/50 text-xs">Years Exp.</div>
+                  <div className="text-2xl font-bold text-ivory">15+</div>
+                  <div className="text-silver text-xs">Years Exp.</div>
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-2xl font-bold text-white">Dr Sesing</h3>
-                  <p className="text-white/50 text-sm mt-1">Vein & Aesthetic Specialist</p>
+                  <p className="text-white/80 text-sm mt-1">Vein & Aesthetic Specialist</p>
                 </div>
               </div>
             </FadeIn>
@@ -204,10 +204,10 @@ export default function ServicesPage() {
                   Meet Your Specialist
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-6">
                 Expert Care from <span className="text-gradient-subtle">Dr Sesing</span>
               </h2>
-              <p className="text-white/50 leading-relaxed mb-10">
+              <p className="text-silver leading-relaxed mb-10">
                 With over 15 years of experience in vein treatment and aesthetic procedures, Dr Sesing brings expertise, compassion, and cutting-edge techniques to every patient consultation.
               </p>
               <div className="space-y-4 mb-10">
@@ -218,16 +218,16 @@ export default function ServicesPage() {
                 ].map(({ Icon, title, desc }, i) => (
                   <motion.div
                     key={i}
-                    className="card-dark p-4 flex items-start gap-4 hover:border-violet-500/20 transition-all duration-300 group"
+                    className="card-dark p-4 flex items-start gap-4 hover:border-gold-bright/20 transition-all duration-300 group"
                     initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1 }}
                   >
-                    <div className="w-9 h-9 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/20 transition-colors">
-                      <Icon className="w-4 h-4 text-violet-400" />
+                    <div className="w-9 h-9 rounded-xl bg-gold/10 border border-gold-bright/20 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors">
+                      <Icon className="w-4 h-4 text-gold" />
                     </div>
                     <div>
-                      <div className="text-white font-medium text-sm">{title}</div>
-                      <div className="text-white/40 text-sm mt-0.5">{desc}</div>
+                      <div className="text-ivory font-medium text-sm">{title}</div>
+                      <div className="text-silver text-sm mt-0.5">{desc}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -243,7 +243,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="relative py-32 overflow-hidden border-t border-white/[0.06]">
+      <section className="relative py-32 overflow-hidden border-t border-graphite">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
         <div className="ellipse-rings">
           {[200, 400, 600].map((size, i) => (
@@ -251,7 +251,7 @@ export default function ServicesPage() {
           ))}
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[600px] h-[300px] bg-violet-600/12 rounded-full filter blur-[100px]" />
+          <div className="w-[600px] h-[300px] bg-gold/12 rounded-full filter blur-[100px]" />
         </div>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -264,10 +264,10 @@ export default function ServicesPage() {
               </span>
               <div className="glow-divider-line right" />
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+            <h2 className="text-4xl lg:text-6xl font-bold text-ivory mb-6">
               Ready to Schedule Your <span className="text-gradient">Appointment?</span>
             </h2>
-            <p className="text-white/40 text-lg mb-12">Our team is here to provide you with the best medical care.</p>
+            <p className="text-silver text-lg mb-12">Our team is here to provide you with the best medical care.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/booking" className="btn-glow group">
                 <div className="glow-ring" />

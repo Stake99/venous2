@@ -5,14 +5,14 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#26262e] overflow-hidden">
+    <footer className="relative border-t border-graphite bg-white overflow-hidden">
       {/* Grid lines */}
       <div className="grid-lines">
         {[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}
       </div>
 
       {/* Glow orb */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-violet-600/10 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gold/10 rounded-full filter blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -23,9 +23,9 @@ export default function Footer() {
               <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
                 <Image src="/image/venous_logo.png" alt="The Venous Lounge" fill className="object-contain" />
               </div>
-              <span className="text-white font-semibold text-lg">The Venous Lounge</span>
+              <span className="text-ivory font-semibold text-lg">The Venous Lounge</span>
             </Link>
-            <p className="text-white/40 text-sm leading-relaxed max-w-xs">
+            <p className="text-silver text-sm leading-relaxed max-w-xs">
               Your trusted partner for vein treatment and aesthetic services in Phahameng, Bloemfontein, South Africa.
             </p>
             <div className="flex gap-3 mt-6">
@@ -35,7 +35,7 @@ export default function Footer() {
                 { label: 'Facebook',  path: 'M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z' },
               ].map((s) => (
                 <a key={s.label} href="#" aria-label={s.label}
-                  className="w-9 h-9 rounded-xl border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white hover:border-white/20 transition-all duration-200">
+                  className="w-9 h-9 rounded-xl border border-graphite flex items-center justify-center text-silver hover:text-ivory hover:border-graphite transition-all duration-200">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d={s.path} /></svg>
                 </a>
               ))}
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-5">Quick Links</p>
+            <p className="text-ash text-xs font-semibold uppercase tracking-widest mb-5">Quick Links</p>
             <ul className="space-y-3">
               {[
                 { name: 'About Us',           href: '/about' },
@@ -55,8 +55,8 @@ export default function Footer() {
                 { name: 'Book Appointment',   href: '/booking' },
               ].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-white/40 hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group">
-                    <svg className="w-3 h-3 text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1 group-hover:translate-x-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <Link href={l.href} className="text-silver hover:text-ivory text-sm transition-colors duration-200 flex items-center gap-2 group">
+                    <svg className="w-3 h-3 text-gold opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1 group-hover:translate-x-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                     {l.name}
@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-5">Contact</p>
+            <p className="text-ash text-xs font-semibold uppercase tracking-widest mb-5">Contact</p>
             <ul className="space-y-4">
               {[
                 { icon: '📍', text: '6571 Dr Lebona Street, Phahameng, Bloemfontein' },
@@ -79,8 +79,8 @@ export default function Footer() {
                 <li key={i} className="flex items-start gap-3">
                   <span className="text-base mt-0.5">{item.icon}</span>
                   {item.href
-                    ? <a href={item.href} className="text-white/40 hover:text-white text-sm transition-colors duration-200">{item.text}</a>
-                    : <span className="text-white/40 text-sm">{item.text}</span>}
+                    ? <a href={item.href} className="text-silver hover:text-ivory text-sm transition-colors duration-200">{item.text}</a>
+                    : <span className="text-silver text-sm">{item.text}</span>}
                 </li>
               ))}
             </ul>
@@ -88,14 +88,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/25 text-xs">© {year} Venous Lounge Medical Center. All rights reserved.</p>
+        <div className="mt-16 pt-8 border-t border-graphite flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-ash text-xs">© {year} Venous Lounge Medical Center. All rights reserved.</p>
           <div className="flex gap-6">
             {[
               { label: 'Privacy Policy', href: '/contact' },
               { label: 'Terms of Service', href: '/contact' },
             ].map((l) => (
-              <Link key={l.href} href={l.href} className="text-white/25 hover:text-white/60 text-xs transition-colors duration-200">
+              <Link key={l.href} href={l.href} className="text-ash hover:text-silver text-xs transition-colors duration-200">
                 {l.label}
               </Link>
             ))}

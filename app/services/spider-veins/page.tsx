@@ -41,7 +41,7 @@ export default function SpiderVeinsPage() {
   }, []);
 
   return (
-    <div className="bg-[#26262e] text-white overflow-hidden">
+    <div className="bg-white text-ivory overflow-hidden">
       {/* Scan line */}
       <div className="scan-line" />
 
@@ -53,14 +53,14 @@ export default function SpiderVeinsPage() {
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
         <div className="absolute inset-0 parallax-slow" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
           <Image src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1600&q=80" alt="Spider veins" fill className="object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#26262e]/95 to-[#26262e]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ivory/95 to-ivory/70" />
         </div>
         <div className="absolute inset-0 pointer-events-none parallax-slow" style={{ transform: `translateY(${scrollY * 0.4}px)` }}>
-          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-violet-600/10 rounded-full filter blur-[100px]" />
+          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-gold/10 rounded-full filter blur-[100px]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 pb-20">
-          <Link href="/services" className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm mb-8 group transition-colors">
+          <Link href="/services" className="inline-flex items-center gap-2 text-silver hover:text-ivory text-sm mb-8 group transition-colors">
             <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -70,15 +70,15 @@ export default function SpiderVeinsPage() {
             <span className="text-6xl">💉</span>
             <div>
               <div className="section-label mb-3">Vein Treatment</div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white">Spider Veins Treatment</h1>
-              <p className="text-white/50 mt-2 text-lg">Clear, Beautiful Skin</p>
+              <h1 className="text-4xl lg:text-6xl font-bold text-ivory">Spider Veins Treatment</h1>
+              <p className="text-silver mt-2 text-lg">Clear, Beautiful Skin</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── CONTENT ──────────────────────────────────────────── */}
-      <section className="relative py-20 border-t border-white/[0.06] overflow-hidden">
+      <section className="relative py-20 border-t border-graphite overflow-hidden">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -88,12 +88,12 @@ export default function SpiderVeinsPage() {
               { src: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80', title: 'Sclerotherapy Treatment', sub: 'Effective spider vein removal', offset: scrollY * 0.04 },
               { src: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80',    title: 'Beautiful Results',       sub: 'Clear, healthy-looking skin',  offset: -scrollY * 0.04 },
             ].map((img, i) => (
-              <div key={i} className="relative h-72 rounded-2xl overflow-hidden border border-white/[0.08] group parallax-slow" style={{ transform: `translateY(${img.offset}px)` }}>
+              <div key={i} className="relative h-72 rounded-2xl overflow-hidden border border-graphite group parallax-slow" style={{ transform: `translateY(${img.offset}px)` }}>
                 <Image src={img.src} alt={img.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#26262e]/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ivory/80 to-transparent" />
                 <div className="absolute bottom-5 left-5">
                   <div className="text-white font-semibold">{img.title}</div>
-                  <div className="text-white/40 text-sm">{img.sub}</div>
+                  <div className="text-white/80 text-sm">{img.sub}</div>
                 </div>
               </div>
             ))}
@@ -103,26 +103,26 @@ export default function SpiderVeinsPage() {
             {/* Main */}
             <div className="lg:col-span-2 space-y-6">
               <div className="card-dark p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">About Spider Veins</h2>
-                <p className="text-white/50 leading-relaxed mb-3">Spider veins (also called thread veins or telangiectasia) are small, damaged veins that appear on the surface of the legs or face. They are usually red, purple, or blue and can look like spider webs or tree branches.</p>
-                <p className="text-white/50 leading-relaxed">At The Venous Lounge, we offer effective, minimally invasive treatments to remove spider veins and restore clear, beautiful skin. Our procedures are quick, virtually painless, and require no downtime.</p>
+                <h2 className="text-2xl font-bold text-ivory mb-4">About Spider Veins</h2>
+                <p className="text-silver leading-relaxed mb-3">Spider veins (also called thread veins or telangiectasia) are small, damaged veins that appear on the surface of the legs or face. They are usually red, purple, or blue and can look like spider webs or tree branches.</p>
+                <p className="text-silver leading-relaxed">At The Venous Lounge, we offer effective, minimally invasive treatments to remove spider veins and restore clear, beautiful skin. Our procedures are quick, virtually painless, and require no downtime.</p>
               </div>
 
               <div className="card-dark p-8">
-                <h2 className="text-2xl font-bold text-white mb-5">Treatment Options</h2>
+                <h2 className="text-2xl font-bold text-ivory mb-5">Treatment Options</h2>
                 <div className="space-y-5">
                   {[
                     { title: 'Sclerotherapy',      desc: 'The gold standard treatment where a solution is injected directly into the vein, causing it to collapse and fade.', benefits: ['Highly effective', 'Minimal discomfort', 'Quick procedure', 'No downtime'] },
                     { title: 'Laser Therapy',      desc: 'Non-invasive treatment using focused light to target and eliminate spider veins.',                                   benefits: ['No needles', 'Precise targeting', 'Suitable for facial veins', 'Fast recovery'] },
                     { title: 'Combination Therapy',desc: 'Using both sclerotherapy and laser for optimal results on stubborn veins.',                                         benefits: ['Maximum effectiveness', 'Customised approach', 'Better outcomes', 'Comprehensive care'] },
                   ].map((t, i) => (
-                    <div key={i} className="border-l-2 border-violet-500/40 pl-5 py-1">
-                      <h3 className="text-white font-semibold mb-2">{t.title}</h3>
-                      <p className="text-white/40 text-sm mb-3">{t.desc}</p>
+                    <div key={i} className="border-l-2 border-gold-bright/40 pl-5 py-1">
+                      <h3 className="text-ivory font-semibold mb-2">{t.title}</h3>
+                      <p className="text-silver text-sm mb-3">{t.desc}</p>
                       <div className="grid grid-cols-2 gap-2">
                         {t.benefits.map((b, j) => (
-                          <div key={j} className="flex items-center gap-2 text-white/35 text-xs">
-                            <svg className="w-3 h-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div key={j} className="flex items-center gap-2 text-silver text-xs">
+                            <svg className="w-3 h-3 text-confirmed flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             {b}
@@ -135,7 +135,7 @@ export default function SpiderVeinsPage() {
               </div>
 
               <div className="card-dark p-8">
-                <h2 className="text-2xl font-bold text-white mb-5">What to Expect</h2>
+                <h2 className="text-2xl font-bold text-ivory mb-5">What to Expect</h2>
                 <div className="space-y-5">
                   {[
                     { step: '1', title: 'Consultation', desc: 'Dr Sesing will examine your veins and recommend the best treatment approach.' },
@@ -144,10 +144,10 @@ export default function SpiderVeinsPage() {
                     { step: '4', title: 'Follow-up',    desc: 'We monitor your progress and provide additional treatments if needed.' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4">
-                      <div className="w-9 h-9 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 font-bold text-sm flex-shrink-0">{item.step}</div>
+                      <div className="w-9 h-9 rounded-xl bg-gold/20 border border-gold-bright/30 flex items-center justify-center text-gold font-bold text-sm flex-shrink-0">{item.step}</div>
                       <div>
-                        <div className="text-white font-semibold text-sm mb-1">{item.title}</div>
-                        <div className="text-white/40 text-sm">{item.desc}</div>
+                        <div className="text-ivory font-semibold text-sm mb-1">{item.title}</div>
+                        <div className="text-silver text-sm">{item.desc}</div>
                       </div>
                     </div>
                   ))}
@@ -158,8 +158,8 @@ export default function SpiderVeinsPage() {
             {/* Sidebar */}
             <div className="space-y-5">
               <div className="card-dark p-7">
-                <h3 className="text-white font-bold text-lg mb-3">Book Your Treatment</h3>
-                <p className="text-white/40 text-sm mb-5">Get clear, beautiful skin with our spider vein treatments.</p>
+                <h3 className="text-ivory font-bold text-lg mb-3">Book Your Treatment</h3>
+                <p className="text-silver text-sm mb-5">Get clear, beautiful skin with our spider vein treatments.</p>
                 <Link href="/booking" className="btn-glow w-full justify-center">
                   <div className="glow-ring" />
                   <span className="relative z-10">Book Now</span>
@@ -167,7 +167,7 @@ export default function SpiderVeinsPage() {
               </div>
 
               <div className="card-dark p-7">
-                <h3 className="text-white font-bold text-lg mb-4">Quick Facts</h3>
+                <h3 className="text-ivory font-bold text-lg mb-4">Quick Facts</h3>
                 <div className="space-y-4">
                   {[
                     { icon: '⏱️', label: 'Procedure Time', value: '15–30 minutes' },
@@ -178,8 +178,8 @@ export default function SpiderVeinsPage() {
                     <div key={i} className="flex items-start gap-3">
                       <span className="text-xl">{item.icon}</span>
                       <div>
-                        <div className="text-white/30 text-xs uppercase tracking-wider">{item.label}</div>
-                        <div className="text-white/70 text-sm">{item.value}</div>
+                        <div className="text-ash text-xs uppercase tracking-wider">{item.label}</div>
+                        <div className="text-mist text-sm">{item.value}</div>
                       </div>
                     </div>
                   ))}
@@ -187,7 +187,7 @@ export default function SpiderVeinsPage() {
               </div>
 
               <div className="card-dark p-7">
-                <h3 className="text-white font-bold text-lg mb-4">Contact</h3>
+                <h3 className="text-ivory font-bold text-lg mb-4">Contact</h3>
                 <div className="space-y-3">
                   {[
                     { icon: '📍', text: '6571 Dr Lebona Street, Phahameng, Bloemfontein' },
@@ -197,8 +197,8 @@ export default function SpiderVeinsPage() {
                     <div key={i} className="flex items-start gap-3">
                       <span className="text-lg">{item.icon}</span>
                       {item.href
-                        ? <a href={item.href} className="text-white/40 hover:text-white text-sm transition-colors">{item.text}</a>
-                        : <span className="text-white/40 text-sm">{item.text}</span>}
+                        ? <a href={item.href} className="text-silver hover:text-ivory text-sm transition-colors">{item.text}</a>
+                        : <span className="text-silver text-sm">{item.text}</span>}
                     </div>
                   ))}
                 </div>

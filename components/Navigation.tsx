@@ -27,7 +27,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#26262e]/80 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 border-b border-graphite bg-white/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
 
@@ -36,7 +36,7 @@ export default function Navigation() {
             <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
               <Image src="/image/venous_logo.png" alt="The Venous Lounge" fill className="object-contain" priority />
             </div>
-            <span className="text-white font-semibold text-lg tracking-tight">The Venous Lounge</span>
+            <span className="text-ivory font-semibold text-lg tracking-tight">The Venous Lounge</span>
           </Link>
 
           {/* Desktop nav */}
@@ -49,16 +49,16 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
-                className="relative text-white/60 hover:text-white text-sm font-medium transition-colors duration-200 group"
+                className="relative text-silver hover:text-ivory text-sm font-medium transition-colors duration-200 group"
               >
                 {label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-violet-400 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
 
             {/* Services dropdown */}
             <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <button className="relative text-white/60 hover:text-white text-sm font-medium transition-colors duration-200 flex items-center gap-1 group">
+              <button className="relative text-silver hover:text-ivory text-sm font-medium transition-colors duration-200 flex items-center gap-1 group">
                 Services
                 <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -67,7 +67,7 @@ export default function Navigation() {
 
               {servicesOpen && (
                 <div
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-2xl border border-white/[0.08] bg-[#34343e]/90 backdrop-blur-xl shadow-2xl py-2 overflow-hidden"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-2xl border border-graphite bg-white/90 backdrop-blur-xl shadow-2xl py-2 overflow-hidden"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -75,10 +75,10 @@ export default function Navigation() {
                     <Link
                       key={i}
                       href={s.href}
-                      className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/[0.05] transition-all duration-150 text-sm"
+                      className="flex items-center gap-3 px-4 py-2.5 text-silver hover:text-ivory hover:bg-ink transition-all duration-150 text-sm"
                       onClick={() => { setServicesOpen(false); if (timeoutId) clearTimeout(timeoutId); }}
                     >
-                      <s.Icon className="w-4 h-4 text-violet-400 flex-shrink-0" />
+                      <s.Icon className="w-4 h-4 text-gold flex-shrink-0" />
                       {s.name}
                     </Link>
                   ))}
@@ -98,7 +98,7 @@ export default function Navigation() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white/70 hover:text-white"
+            className="md:hidden text-mist hover:text-ivory"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -109,7 +109,7 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-white/[0.06] bg-[#2c2c36]">
+        <div className="md:hidden border-t border-graphite bg-ink">
           <div className="px-4 py-4 space-y-1">
             {[
               { label: 'Home',    href: '/' },
@@ -119,7 +119,7 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
-                className="block px-3 py-2.5 text-white/60 hover:text-white hover:bg-white/[0.04] rounded-xl text-sm transition-all"
+                className="block px-3 py-2.5 text-silver hover:text-ivory hover:bg-ink rounded-xl text-sm transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 {label}
@@ -129,7 +129,7 @@ export default function Navigation() {
             <div>
               <button
                 onClick={() => setServicesOpen(!servicesOpen)}
-                className="w-full flex items-center justify-between px-3 py-2.5 text-white/60 hover:text-white hover:bg-white/[0.04] rounded-xl text-sm transition-all"
+                className="w-full flex items-center justify-between px-3 py-2.5 text-silver hover:text-ivory hover:bg-ink rounded-xl text-sm transition-all"
               >
                 <span>Services</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
@@ -140,10 +140,10 @@ export default function Navigation() {
                     <Link
                       key={i}
                       href={s.href}
-                      className="flex items-center gap-2 px-3 py-2 text-white/50 hover:text-white hover:bg-white/[0.04] rounded-xl text-sm transition-all"
+                      className="flex items-center gap-2 px-3 py-2 text-silver hover:text-ivory hover:bg-ink rounded-xl text-sm transition-all"
                       onClick={() => setIsOpen(false)}
                     >
-                      <s.Icon className="w-4 h-4 text-violet-400" />{s.name}
+                      <s.Icon className="w-4 h-4 text-gold" />{s.name}
                     </Link>
                   ))}
                 </div>
