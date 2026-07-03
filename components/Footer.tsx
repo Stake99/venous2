@@ -26,7 +26,7 @@ export default function Footer() {
               <span className="text-ivory font-semibold text-lg">The Venous Lounge</span>
             </Link>
             <p className="text-silver text-sm leading-relaxed max-w-xs">
-              Your trusted partner for vein treatment and aesthetic services in Phahameng, Bloemfontein, South Africa.
+              Your trusted partner for primary care, wellness and IV therapy in Phahameng, Bloemfontein, South Africa.
             </p>
             <div className="flex gap-3 mt-6">
               {[
@@ -47,12 +47,12 @@ export default function Footer() {
             <p className="text-ash text-xs font-semibold uppercase tracking-widest mb-5">Quick Links</p>
             <ul className="space-y-3">
               {[
-                { name: 'About Us',           href: '/about' },
-                { name: 'Our Services',       href: '/services' },
-                { name: 'Varicose Veins',     href: '/services/varicose-veins' },
-                { name: 'Spider Veins',       href: '/services/spider-veins' },
-                { name: 'Aesthetic Services', href: '/services/aesthetics' },
-                { name: 'Book Appointment',   href: '/booking' },
+                { name: 'About Us',            href: '/about' },
+                { name: 'Our Services',        href: '/services' },
+                { name: 'IV Therapy Lounge',   href: '/services#iv-therapy' },
+                { name: 'Occupational Health', href: '/services#occupational-health' },
+                { name: 'Book Appointment',    href: '/booking' },
+                { name: 'Contact Us',          href: '/contact' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-silver hover:text-ivory text-sm transition-colors duration-200 flex items-center gap-2 group">
@@ -90,7 +90,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-graphite flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-ash text-xs">© {year} Venous Lounge Medical Center. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {[
               { label: 'Privacy Policy', href: '/contact' },
               { label: 'Terms of Service', href: '/contact' },
@@ -99,6 +99,13 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
+            <p className="text-ash text-xs">
+              Developed by{' '}
+              <a href="https://smartmacmane.co.za/" target="_blank" rel="noopener noreferrer"
+                className="text-gold hover:text-gold-bright font-medium transition-colors duration-200">
+                Smart Macmane
+              </a>
+            </p>
           </div>
         </div>
       </div>

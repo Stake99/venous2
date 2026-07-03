@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronDown, Menu, X, CalendarDays, Activity, Sparkles, Stethoscope, LayoutGrid } from 'lucide-react';
+import { ChevronDown, Menu, X, CalendarDays, Stethoscope, Droplet, Brain, Briefcase, LayoutGrid } from 'lucide-react';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,10 +11,11 @@ export default function Navigation() {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const services = [
-    { name: 'Varicose Veins',     href: '/services/varicose-veins', Icon: Activity },
-    { name: 'Spider Veins',       href: '/services/spider-veins',   Icon: Sparkles },
-    { name: 'Aesthetic Services', href: '/services/aesthetics',     Icon: Stethoscope },
-    { name: 'View All Services',  href: '/services',                Icon: LayoutGrid },
+    { name: 'General Medical',    href: '/services#general-medical',     Icon: Stethoscope },
+    { name: 'IV Therapy Lounge',  href: '/services#iv-therapy',          Icon: Droplet },
+    { name: 'Mental Health',      href: '/services#mental-health',       Icon: Brain },
+    { name: 'Occupational Health', href: '/services#occupational-health', Icon: Briefcase },
+    { name: 'View All Services',  href: '/services',                     Icon: LayoutGrid },
   ];
 
   const handleMouseEnter = () => {

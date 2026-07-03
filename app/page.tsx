@@ -6,8 +6,8 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import {
   Activity, Shield, Clock, CreditCard, MapPin, Phone,
-  ArrowRight, ChevronDown, Star, Stethoscope, Sparkles,
-  HeartPulse, Scissors, UserCheck, CheckCircle2,
+  ArrowRight, ChevronDown, Star, Stethoscope, Droplet,
+  HeartPulse, Brain, Briefcase, TestTube, Pill, UserCheck, CheckCircle2,
   CalendarDays, Award, Users, TrendingUp,
 } from 'lucide-react';
 import ParallaxBackground from '@/components/ParallaxBackground';
@@ -71,25 +71,25 @@ export default function Home() {
   }, []);
 
   const services = [
-    { title: 'Varicose Veins',     desc: 'Advanced minimally invasive walk-in, walk-out treatment.',       Icon: Activity,    href: '/services/varicose-veins' },
-    { title: 'Spider Veins',       desc: 'Effective removal for clearer, healthier-looking skin.',          Icon: Sparkles,    href: '/services/spider-veins' },
-    { title: 'Venous Ulcers',      desc: 'Specialised treatment for chronic venous ulcers.',                Icon: HeartPulse,  href: '/services' },
-    { title: 'Aesthetic Services', desc: 'Professional cosmetic procedures in a clinical setting.',         Icon: Star,        href: '/services/aesthetics' },
-    { title: 'General Surgery',    desc: 'Minor surgical procedures backed by surgical expertise.',         Icon: Scissors,    href: '/services' },
-    { title: 'Consultations',      desc: 'Expert medical consultations and personalised planning.',         Icon: Stethoscope, href: '/booking' },
+    { title: 'General Medical',     desc: 'GP consultations, chronic care, screenings and minor procedures.', Icon: Stethoscope, href: '/services#general-medical' },
+    { title: 'IV Therapy Lounge',   desc: 'Custom nutritional drips for energy, immunity and recovery.',      Icon: Droplet,     href: '/services#iv-therapy' },
+    { title: 'Mental Health',       desc: 'Confidential screening and support for stress, anxiety and mood.', Icon: Brain,       href: '/services#mental-health' },
+    { title: 'Occupational Health', desc: 'Pre-employment medicals and fitness-for-duty assessments.',        Icon: Briefcase,   href: '/services#occupational-health' },
+    { title: 'Diagnostics',         desc: 'On-site testing, ECG interpretation and vital monitoring.',        Icon: TestTube,    href: '/services#diagnostics' },
+    { title: 'Pharmacy Support',    desc: 'Prescription renewals, medication reviews and education.',         Icon: Pill,        href: '/services#pharmacy' },
   ];
 
   const whyUs = [
-    { Icon: UserCheck,    title: 'Expert Specialist',  desc: 'Dr Sesing — experienced vein and aesthetic specialist' },
-    { Icon: CreditCard,   title: 'Medical Aid',        desc: 'All major medical aids accepted' },
-    { Icon: Clock,        title: 'Flexible Hours',     desc: 'Extended hours for working patients' },
-    { Icon: CheckCircle2, title: 'Walk-in / Walk-out', desc: 'Minimally invasive procedures' },
+    { Icon: UserCheck,    title: 'Expert GP Care',   desc: 'Dr Sesing — experienced general practitioner' },
+    { Icon: CreditCard,   title: 'Medical Aid',      desc: 'All major medical aids accepted' },
+    { Icon: Clock,        title: 'Flexible Hours',   desc: 'Extended hours for working patients' },
+    { Icon: CheckCircle2, title: 'Walk-ins Welcome', desc: 'Same-day visits & easy online booking' },
   ];
 
   const testimonials = [
-    { name: 'Sarah M.',  treatment: 'Varicose Vein Treatment', quote: 'The team made me feel comfortable throughout. My legs feel so much better now!', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80' },
-    { name: 'John D.',   treatment: 'Spider Vein Removal',     quote: 'Professional, efficient, and caring. The results exceeded my expectations.',       img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
-    { name: 'Linda K.',  treatment: 'Aesthetic Services',      quote: 'Dr Sesing is amazing! I felt like I was in a luxury spa, not a medical facility.', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
+    { name: 'Sarah M.',  treatment: 'Immune Boost IV Drip', quote: 'The lounge is so relaxing and I left feeling re-energised. The team made the whole visit effortless.', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80' },
+    { name: 'John D.',   treatment: 'GP Consultation',      quote: 'Professional, efficient, and genuinely caring. Dr Sesing took the time to listen and explain everything.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
+    { name: 'Linda K.',  treatment: 'IV Therapy Lounge',    quote: 'Dr Sesing is amazing! I felt like I was in a luxury spa, not a medical facility.', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
   ];
 
   return (
@@ -150,7 +150,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="text-silver text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
             >
-              Expert vein treatment and aesthetic services at Venous Lounge Medical Center
+              Comprehensive primary care, wellness and IV therapy at Venous Lounge Medical Center
               in Phahameng, Bloemfontein. All major medical aids accepted.
             </motion.p>
 
@@ -243,10 +243,10 @@ export default function Home() {
               <div className="glow-divider-line right" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-4">
-              Comprehensive Vein &{' '}
-              <span className="text-gradient-subtle">Aesthetic Care</span>
+              Comprehensive Primary Care &{' '}
+              <span className="text-gradient-subtle">Wellness</span>
             </h2>
-            <p className="text-silver max-w-xl mx-auto">Minimally invasive procedures with expert care</p>
+            <p className="text-silver max-w-xl mx-auto">From everyday GP visits to IV wellness drips — all under one roof</p>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -304,30 +304,30 @@ export default function Home() {
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-2xl font-bold text-white">Dr Sesing</h3>
-                  <p className="text-white/80 text-sm mt-1">Vein & Aesthetic Specialist</p>
+                  <p className="text-white/80 text-sm mt-1">General Practitioner</p>
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn direction="right" delay={0.15}>
               <div className="glow-divider justify-start mb-6">
-                <span className="section-label"><UserCheck className="w-3 h-3" />Meet Your Specialist</span>
+                <span className="section-label"><UserCheck className="w-3 h-3" />Meet Your Doctor</span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-6">
                 Expert Care from{' '}
                 <span className="text-gradient-subtle">Dr Sesing</span>
               </h2>
               <p className="text-silver leading-relaxed mb-10">
-                With over 15 years of experience in vein treatment and aesthetic procedures,
-                Dr Sesing brings expertise, compassion, and cutting-edge techniques to every
+                With over 15 years of experience in general medicine and primary care,
+                Dr Sesing brings expertise, compassion, and a whole-person approach to every
                 patient consultation at The Venous Lounge.
               </p>
 
               <div className="space-y-4 mb-10">
                 {[
-                  { Icon: Stethoscope, title: 'Minimally Invasive Specialist', desc: 'Expert in walk-in, walk-out vein procedures' },
-                  { Icon: HeartPulse,  title: 'Patient-Centred Approach',      desc: 'Your comfort and results are our priority' },
-                  { Icon: TrendingUp,  title: 'Proven Track Record',           desc: '1000+ successful treatments performed' },
+                  { Icon: Stethoscope, title: 'Primary-Care Expertise', desc: 'GP consultations, chronic care and screenings' },
+                  { Icon: HeartPulse,  title: 'Patient-Centred Approach', desc: 'Your comfort and wellbeing come first' },
+                  { Icon: TrendingUp,  title: 'Whole-Family Care',       desc: 'Continuity of care for you and your loved ones' },
                 ].map(({ Icon, title, desc }, i) => (
                   <motion.div
                     key={i}
@@ -370,7 +370,7 @@ export default function Home() {
               <div className="glow-divider-line right" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-4">
-              Excellence in <span className="text-gradient-subtle">Vein Care</span>
+              Excellence in <span className="text-gradient-subtle">Everyday Care</span>
             </h2>
             <p className="text-silver max-w-xl mx-auto">Patient-centred care with a lounge-style medical environment</p>
           </FadeIn>
@@ -392,6 +392,83 @@ export default function Home() {
                 </motion.div>
               </FadeIn>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STEP INSIDE — real photos of the practice ────────── */}
+      <section className="relative py-32 overflow-hidden border-t border-graphite">
+        <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/8 rounded-full filter blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* Left — copy */}
+            <FadeIn direction="left">
+              <div className="glow-divider justify-start mb-6">
+                <span className="section-label"><MapPin className="w-3 h-3" />Visit Us</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-5 leading-tight">
+                A real place,<br />a <span className="text-gradient-subtle">warm welcome</span>
+              </h2>
+              <p className="text-silver leading-relaxed mb-8 max-w-lg">
+                We're not a clinical white box. The Venous Lounge is a relaxed, lounge-style
+                space in Phahameng, Bloemfontein — soft seating, an unhurried atmosphere, and
+                a team that treats you like a guest, not a queue number.
+              </p>
+
+              <div className="space-y-3 mb-9">
+                {[
+                  { Icon: MapPin, text: '6571 Dr Lebona Street, Phahameng, Bloemfontein' },
+                  { Icon: Clock,  text: 'Open Mon–Fri 08:00–22:00 · Sat–Sun 08:00–13:00' },
+                  { Icon: CheckCircle2, text: 'Walk-ins welcome · All major medical aids accepted' },
+                ].map(({ Icon, text }, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold-bright/20 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-gold" />
+                    </div>
+                    <span className="text-mist text-sm">{text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/contact" className="btn-glow px-8 group justify-center">
+                  <div className="glow-ring" />
+                  <span className="relative z-10">Get directions</span>
+                  <ArrowRight className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link href="/booking" className="px-8 py-3.5 rounded-full border border-graphite text-mist text-sm font-semibold hover:border-gold-bright/30 hover:text-gold transition-colors flex items-center justify-center gap-2">
+                  <CalendarDays className="w-4 h-4" />
+                  Book a visit
+                </Link>
+              </div>
+            </FadeIn>
+
+            {/* Right — overlapping editorial photo collage (genuine clinic photos) */}
+            <FadeIn direction="right">
+              <div className="relative h-[400px] sm:h-[460px]">
+                {/* Main — storefront */}
+                <div className="absolute top-0 right-0 w-[80%] h-[300px] sm:h-[340px] rounded-3xl overflow-hidden border border-graphite shadow-2xl">
+                  <Image src="/image/practice_outside/IMG-20260612-WA0035.jpg" alt="The Venous Lounge storefront in Bloemfontein" fill sizes="(max-width: 1024px) 80vw, 40vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ivory/40 to-transparent" />
+                </div>
+                {/* Floating — interior lounge */}
+                <div className="absolute bottom-0 left-0 w-[60%] h-[230px] sm:h-[260px] rounded-2xl overflow-hidden border border-graphite shadow-2xl ring-4 ring-white">
+                  <Image src="/image/practice_inside/IMG-20260612-WA0039.jpg" alt="Inside the Venous Lounge waiting area" fill sizes="(max-width: 1024px) 60vw, 30vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ivory/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div className="text-white font-semibold text-sm">Inside the lounge</div>
+                  </div>
+                </div>
+                {/* OPEN badge */}
+                <div className="absolute top-4 left-2 sm:left-4 z-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-confirmed/30 bg-white/90 backdrop-blur text-confirmed text-xs font-semibold uppercase tracking-wider shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-confirmed animate-pulse" />
+                  Open · Mon–Sat
+                </div>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -460,8 +537,8 @@ export default function Home() {
               <div className="glow-divider-line right" />
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold text-ivory mb-6">
-              Ready for Expert{' '}
-              <span className="text-gradient">Vein Care?</span>
+              Ready to Prioritise{' '}
+              <span className="text-gradient">Your Health?</span>
             </h2>
             <p className="text-silver text-lg mb-12 max-w-xl mx-auto">
               Book your consultation today. All major medical aids accepted. Flexible hours to suit your schedule.

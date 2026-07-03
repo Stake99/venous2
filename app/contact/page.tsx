@@ -91,11 +91,11 @@ export default function ContactPage() {
             <FadeIn direction="left">
               {/* Clinic image */}
               <div className="relative h-56 rounded-2xl overflow-hidden border border-graphite mb-10 group">
-                <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Venous Lounge" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src="/image/practice_outside/IMG-20260612-WA0035.jpg" alt="The Venous Lounge storefront — Dr Sesing Surgery & Aesthetics" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ivory/80 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5">
-                  <div className="text-white font-semibold">Visit Our Clinic</div>
-                  <div className="text-white/80 text-sm">Modern facilities in Phahameng, Bloemfontein</div>
+                  <div className="text-white font-semibold">Look for the green gate</div>
+                  <div className="text-white/80 text-sm">Dr Sesing Surgery &amp; Aesthetics · Phahameng, Bloemfontein</div>
                 </div>
               </div>
 

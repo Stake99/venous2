@@ -25,7 +25,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "The Venous Lounge - Dr Sesing Surgery & Aesthetics | Bloemfontein",
-  description: "Your Health, our Priority Always. Expert vein treatment and aesthetic services in Bloemfontein, South Africa. All major medical aids accepted.",
+  description: "Your Health, our Priority Always. Comprehensive primary care, nutritional IV therapy, mental and occupational health in Bloemfontein, South Africa. All major medical aids accepted.",
 };
 
 export default function RootLayout({

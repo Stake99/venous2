@@ -2,7 +2,7 @@
 
 **Your Health, our Priority Always.**
 
-A Bloemfontein-based medical-aesthetic practice specialising in vein and general surgical care, built on trust, reliability, and clinical excellence.
+A Bloemfontein-based medical practice offering comprehensive primary care, nutritional IV therapy, mental and occupational health, diagnostics and pharmacy support — built on trust, reliability, and clinical excellence.
 
 ---
 
@@ -45,53 +45,70 @@ Ensures smooth operations and exceptional patient experience. Coordinates all as
 
 ## Services
 
-### Varicose Veins
-Advanced minimally invasive treatment using walk-in, walk-out procedures with proven results.
-- Endovenous laser ablation
-- Sclerotherapy injections
-- Ambulatory phlebectomy
-- Comprehensive vein evaluation
+> Booking note: the live service list, prices and durations on `/booking` come from the booking API, not this file. This section is the canonical reference for site copy (services page, nav, homepage, footer).
 
-### Spider Veins
-Effective removal of spider and thread veins for clearer, healthier-looking skin.
-- Sclerotherapy treatment
-- Laser vein removal
-- Cosmetic vein therapy
-- Quick recovery time
+### General Medical Services
+Comprehensive GP and family medicine — from everyday illness to long-term condition management.
+- GP consultations & medical examinations
+- Acute & chronic disease management (incl. diabetes, asthma & COPD)
+- Health screenings & preventative healthcare
+- Women's, men's, adolescent & elderly care
+- Minor medical procedures, wound care & dressings
+- Blood pressure monitoring · medical reports & letters
 
-### Aesthetic Services
-Professional cosmetic and aesthetic procedures.
-- Cosmetic consultations
-- Non-surgical treatments
-- Skin rejuvenation
-- Professional aesthetic care
+### Nutritional IV Therapy Lounge
+Custom vitamin and hydration drips delivered in our relaxed lounge — energy, immunity, recovery and wellness.
+- Custom nutritional IV drips & build-your-own concoctions
+- Vitamin C, B-complex & B12 infusions
+- Immune boost & energy / performance IV therapy
+- Hydration, recovery & anti-fatigue drips
+- Detox & rejuvenation drips · wellness maintenance packages
 
-### Venous Ulcers
-Specialised treatment for chronic venous ulcers and leg swelling with comprehensive wound care.
-- Ulcer assessment
-- Compression therapy
-- Wound care management
-- Preventive care planning
+### Mental Health Services
+Confidential screening and support for stress, anxiety and mood, with referral coordination when needed.
+- Mental health screening
+- Stress management & anxiety assessments
+- Depression screening
+- Psychological support & referral coordination
+- Workplace stress evaluations
 
-### General Surgery
-Minor surgical procedures and consultations backed by general surgical expertise.
-- Minor surgical procedures
-- Surgical consultations
-- Pre-operative assessments
-- Post-operative care
+### Occupational Health Services
+Workplace medicals and fitness assessments for employers and employees.
+- Pre-employment medicals
+- Return-to-work & fitness-for-duty evaluations
+- Sick leave assessments
+- Injury-on-duty assessments
+- Medical motivation & workplace accommodation reports
 
-### Vein Evaluations
-Comprehensive vein health assessments using advanced diagnostic techniques.
-- Doppler ultrasound scanning
-- Venous insufficiency testing
-- Treatment planning
-- Follow-up assessments
+### Diagnostic & Screening Services
+On-site testing and vital monitoring for fast, informed clinical decisions.
+- Blood glucose & cholesterol screening
+- Urine & pregnancy testing
+- ECG interpretation
+- Vital signs monitoring
+- Comprehensive health risk assessments
+
+### Pharmacy & Medication Support
+Prescription renewals, medication reviews and patient education to keep treatment on track.
+- Chronic prescription renewals
+- Medication reviews
+- Treatment monitoring
+- Patient medication education
+- Dispensing services (where applicable)
+
+### Patient Convenience Services
+Care that fits your life — easy booking, telehealth and continuity from clinic to hospital and back.
+- Online appointment booking
+- Telephonic consultations
+- Follow-up care & hospital referral coordination
+- Patient transport assistance (selected promotions)
+- Continuity of care from clinic to hospital and back
 
 ---
 
 ## Our Approach
 
-The Venous Lounge operates as both a clinical and comfort-oriented environment for vein and surgical treatments. The "lounge" concept combines professional medical care with a welcoming atmosphere.
+The Venous Lounge operates as both a clinical and comfort-oriented environment for primary care and wellness. The "lounge" concept combines professional medical care with a welcoming atmosphere — most visible in the nutritional IV therapy lounge.
 
 The practice prioritises medical-care standards over purely cosmetic or lifestyle-focused services, and is designed for continuity of care — serving whole families and groups, not just individual patients.
 
@@ -102,21 +119,21 @@ The practice prioritises medical-care standards over purely cosmetic or lifestyl
 - **Accessibility** — medical aid acceptance and family-oriented services
 
 ### Expertise
-- **Vein Specialists** — minimally invasive procedures for varicose and spider veins
-- **General Surgery** — broader surgical expertise for comprehensive patient care
+- **Primary Care** — GP consultations, chronic disease management and health screenings
+- **Wellness & IV Therapy** — custom nutritional drips in a relaxed lounge setting
 - **Family-Oriented** — reliable services for you and your loved ones
 
 ---
 
 ## Medical Aids
 
-**All major South African medical aids accepted.** The practice works with most SA medical-aid schemes, making quality vein and surgical treatment more accessible to insured patients and their families.
+**All major South African medical aids accepted.** The practice works with most SA medical-aid schemes, making quality primary care and wellness treatment more accessible to insured patients and their families.
 
 ---
 
 ## At a Glance
 
 - **15+** years of experience
-- **1000+** successful procedures
+- **1000+** patients cared for
 - **6** days open weekly
 - **All** major medical aids accepted

@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   HeartPulse, Shield, CreditCard, Users, Award, Stethoscope,
-  ChevronDown, ArrowRight, CalendarDays, UserCheck, CheckCircle2,
+  ChevronDown, ArrowRight, CalendarDays, UserCheck, CheckCircle2, Camera,
 } from 'lucide-react';
 import ParallaxBackground from '@/components/ParallaxBackground';
 
@@ -54,8 +54,8 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-silver text-lg max-w-2xl mx-auto leading-relaxed">
-              Dr Sesing Surgery & Aesthetics — specialising in vein and general surgical care
-              with a strong emphasis on patient safety, quality, and trust.
+              Dr Sesing Surgery & Aesthetics — comprehensive primary care, wellness and IV
+              therapy with a strong emphasis on patient safety, quality, and trust.
             </p>
           </FadeIn>
         </div>
@@ -66,21 +66,44 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* ── CLINIC IMAGES ────────────────────────────────────── */}
+      {/* ── CLINIC IMAGES — real photos of the practice ──────── */}
       <section className="relative py-20 border-t border-graphite overflow-hidden">
         <div className="grid-lines">{[...Array(7)].map((_, i) => <div key={i} className="grid-line-v" />)}</div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <FadeIn className="text-center mb-12">
+            <div className="glow-divider mb-6">
+              <div className="glow-divider-line" />
+              <span className="section-label"><Camera className="w-3 h-3" />Step Inside</span>
+              <div className="glow-divider-line right" />
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-ivory mb-4">
+              The <span className="text-gradient-subtle">Venous Lounge</span>, for real
+            </h2>
+            <p className="text-silver max-w-xl mx-auto">
+              No stock photos — this is our actual space in Phahameng, Bloemfontein. A relaxed,
+              lounge-style waiting area where every patient is welcome.
+            </p>
+          </FadeIn>
+
+          {/* Asymmetric bento mosaic of the genuine clinic photos */}
+          <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] sm:auto-rows-[210px] gap-4">
             {[
-              { src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80', label: 'Modern Reception',   sub: 'Welcoming lounge atmosphere' },
-              { src: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80', label: 'Private Rooms',      sub: 'Comfortable consultation spaces' },
-              { src: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80', label: 'Advanced Equipment', sub: 'Latest medical technology' },
+              { src: '/image/practice_outside/IMG-20260612-WA0035.jpg', label: 'Find the green gate', sub: 'Our storefront on the street', span: 'col-span-2 row-span-2' },
+              { src: '/image/practice_inside/IMG-20260612-WA0040.jpg',  label: 'The waiting lounge',  sub: 'Soft seating, not a sterile queue', span: 'col-span-2 row-span-1' },
+              { src: '/image/practice_inside/IMG-20260612-WA0037.jpg',  label: 'Walk in, settle in',  sub: 'Reception & a warm welcome', span: 'col-span-1 row-span-1' },
+              { src: '/image/practice_inside/IMG-20260612-WA0038.jpg',  label: 'Room to relax',       sub: 'Comfortable, unhurried, calm', span: 'col-span-1 row-span-1' },
             ].map((img, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="relative h-64 rounded-2xl overflow-hidden border border-graphite group">
-                  <Image src={img.src} alt={img.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <FadeIn key={i} delay={i * 0.08} className={img.span}>
+                <div className="relative h-full w-full rounded-2xl overflow-hidden border border-graphite group">
+                  <Image
+                    src={img.src}
+                    alt={img.label}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-ivory/90 via-ivory/20 to-transparent" />
-                  <div className="absolute bottom-5 left-5">
+                  <div className="absolute bottom-5 left-5 right-5">
                     <div className="text-white font-semibold">{img.label}</div>
                     <div className="text-white/80 text-sm">{img.sub}</div>
                   </div>
@@ -108,14 +131,14 @@ export default function AboutPage() {
               <span className="text-gradient-subtle">Dr Sesing Surgery & Aesthetics</span>
             </h2>
             <p className="text-silver max-w-2xl mx-auto">
-              A Bloemfontein-based medical-aesthetic practice specialising in vein and general surgical care.
+              A Bloemfontein-based medical practice offering comprehensive primary care, IV wellness therapy and occupational health.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
             {[
               { Icon: HeartPulse, title: 'Your Health, our Priority Always', desc: 'We prioritise medical-care standards over purely cosmetic or lifestyle-focused services. Our practice is built on trust, reliability, and clinical excellence.' },
-              { Icon: CreditCard, title: 'All Major Medical Aids Accepted',  desc: 'We work with most South African medical-aid schemes, making quality vein and surgical treatment more accessible to insured patients and their families.' },
+              { Icon: CreditCard, title: 'All Major Medical Aids Accepted',  desc: 'We work with most South African medical-aid schemes, making quality primary care and wellness treatment more accessible to insured patients and their families.' },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <motion.div
@@ -135,12 +158,12 @@ export default function AboutPage() {
             <div className="card-dark p-10">
               <div className="text-center mb-10">
                 <h3 className="text-2xl font-bold text-ivory mb-3">Our Expertise</h3>
-                <p className="text-silver max-w-xl mx-auto">Combining general surgical skills with specialised venous treatments</p>
+                <p className="text-silver max-w-xl mx-auto">Combining everyday primary care with a dedicated IV wellness lounge</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {[
-                  { Icon: Stethoscope, title: 'Vein Specialists',   desc: 'Minimally invasive procedures for varicose and spider veins' },
-                  { Icon: Award,      title: 'General Surgery',    desc: 'Broader surgical expertise for comprehensive patient care' },
+                  { Icon: Stethoscope, title: 'Primary Care',     desc: 'GP consultations, chronic care and health screenings' },
+                  { Icon: HeartPulse, title: 'Wellness & IV Therapy', desc: 'Custom nutritional drips in a relaxed lounge setting' },
                   { Icon: Users,      title: 'Family-Oriented', desc: 'Reliable services for you and your loved ones' },
                 ].map((item, i) => (
                   <FadeIn key={i} delay={i * 0.08}>
@@ -176,8 +199,8 @@ export default function AboutPage() {
                 <span className="text-gradient-subtle">Approach</span>
               </h2>
               <div className="space-y-5 text-silver leading-relaxed">
-                <p>The Venous Lounge operates as both a clinical and comfort-oriented environment for vein and surgical treatments. Our "lounge" concept combines professional medical care with a welcoming atmosphere.</p>
-                <p>We focus on trust, reliability, and general-surgical expertise, rather than heavy marketing language. This medically grounded image reflects our commitment to quality care above all else.</p>
+                <p>The Venous Lounge operates as both a clinical and comfort-oriented environment for primary care and wellness. Our "lounge" concept combines professional medical care with a welcoming atmosphere.</p>
+                <p>We focus on trust, reliability, and clinical expertise, rather than heavy marketing language. This medically grounded image reflects our commitment to quality care above all else.</p>
                 <p>Our practice is designed for continuity of care — serving whole families and groups, not just individual patients.</p>
               </div>
             </div>
@@ -185,7 +208,7 @@ export default function AboutPage() {
             <div className="space-y-4">
               {[
                 { Icon: Shield,     title: 'Clinical Excellence',          desc: 'Professional medical standards in a comfortable lounge setting' },
-                { Icon: Stethoscope, title: 'General Surgical Foundation', desc: 'Broader surgical skills supporting specialised vein treatments' },
+                { Icon: Stethoscope, title: 'Primary-Care Foundation',     desc: 'Comprehensive general practice care for every age' },
                 { Icon: CreditCard, title: 'Medical Aid Friendly',         desc: 'Working with most South African medical-aid schemes' },
                 { Icon: Users,      title: 'Family-Oriented Care',       desc: 'Reliable services for you and your loved ones' },
               ].map((f, i) => (
@@ -352,7 +375,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { Icon: Award,      number: '15+',  label: 'Years Experience' },
-              { Icon: CheckCircle2, number: '1000+',label: 'Successful Procedures' },
+              { Icon: CheckCircle2, number: '1000+',label: 'Patients Cared For' },
               { Icon: CalendarDays, number: '6',    label: 'Days Open Weekly' },
               { Icon: CreditCard, number: 'All',  label: 'Major Medical Aids' },
             ].map((s, i) => (

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Activity, Sparkles, HeartPulse, Scissors, Stethoscope, Award, Users, TrendingUp, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
+import { Activity, Droplet, Brain, Briefcase, TestTube, Pill, CalendarCheck, HeartPulse, Stethoscope, TrendingUp, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
 import ParallaxBackground from '@/components/ParallaxBackground';
 
 interface FadeInProps {
@@ -34,12 +34,13 @@ function FadeIn({ children, delay = 0, className = '', direction = 'up' }: FadeI
 
 export default function ServicesPage() {
   const services = [
-    { title: 'Varicose Veins',     desc: 'Advanced minimally invasive treatment using walk-in, walk-out procedures with proven results.',          Icon: Activity,    href: '/services/varicose-veins', features: ['Endovenous laser ablation', 'Sclerotherapy injections', 'Ambulatory phlebectomy', 'Comprehensive vein evaluation'] },
-    { title: 'Spider Veins',       desc: 'Effective removal of spider and thread veins for clearer, healthier-looking skin.',                       Icon: Sparkles,    href: '/services/spider-veins',   features: ['Sclerotherapy treatment', 'Laser vein removal', 'Cosmetic vein therapy', 'Quick recovery time'] },
-    { title: 'Aesthetic Services', desc: 'Professional cosmetic and aesthetic procedures to help you look and feel your best.',                     Icon: HeartPulse,  href: '/services/aesthetics',     features: ['Cosmetic consultations', 'Non-surgical treatments', 'Skin rejuvenation', 'Professional aesthetic care'] },
-    { title: 'Venous Ulcers',      desc: 'Specialised treatment for chronic venous ulcers and leg swelling with comprehensive wound care.',         Icon: Scissors,    href: '/booking',                 features: ['Ulcer assessment', 'Compression therapy', 'Wound care management', 'Preventive care planning'] },
-    { title: 'General Surgery',    desc: 'Minor surgical procedures and consultations backed by general surgical expertise.',                       Icon: Stethoscope, href: '/booking',                 features: ['Minor surgical procedures', 'Surgical consultations', 'Pre-operative assessments', 'Post-operative care'] },
-    { title: 'Vein Evaluations',   desc: 'Comprehensive vein health assessments using advanced diagnostic techniques.',                             Icon: Award,       href: '/booking',                 features: ['Doppler ultrasound scanning', 'Venous insufficiency testing', 'Treatment planning', 'Follow-up assessments'] },
+    { slug: 'general-medical',     title: 'General Medical Services',  desc: 'Comprehensive GP and family medicine — from everyday illness to long-term condition management.',        Icon: Stethoscope, href: '/booking', features: ['GP consultations & medical examinations', 'Acute & chronic disease management', 'Health screenings & preventative care', 'Women’s, men’s, adolescent & elderly care', 'Minor procedures, wound care & dressings'] },
+    { slug: 'iv-therapy',          title: 'Nutritional IV Therapy Lounge', desc: 'Custom vitamin and hydration drips delivered in our relaxed lounge — energy, immunity, recovery and wellness.', Icon: Droplet,    href: '/booking', features: ['Custom nutritional IV drips', 'Vitamin C, B-complex & B12 infusions', 'Immune boost & energy IV therapy', 'Hydration, recovery & detox drips', 'Build-your-own IV concoctions'] },
+    { slug: 'mental-health',       title: 'Mental Health Services',    desc: 'Confidential screening and support for stress, anxiety and mood, with referral coordination when needed.',  Icon: Brain,       href: '/booking', features: ['Mental health screening', 'Stress & anxiety assessments', 'Depression screening', 'Psychological support', 'Workplace stress evaluations'] },
+    { slug: 'occupational-health', title: 'Occupational Health Services', desc: 'Workplace medicals and fitness assessments for employers and employees.',                                Icon: Briefcase,   href: '/booking', features: ['Pre-employment medicals', 'Return-to-work & fitness-for-duty', 'Sick leave assessments', 'Injury-on-duty assessments', 'Medical motivation & accommodation reports'] },
+    { slug: 'diagnostics',         title: 'Diagnostic & Screening Services', desc: 'On-site testing and vital monitoring for fast, informed clinical decisions.',                          Icon: TestTube,    href: '/booking', features: ['Blood glucose & cholesterol testing', 'Urine & pregnancy testing', 'ECG interpretation', 'Vital signs monitoring', 'Comprehensive health risk assessments'] },
+    { slug: 'pharmacy',            title: 'Pharmacy & Medication Support', desc: 'Prescription renewals, medication reviews and patient education to keep treatment on track.',           Icon: Pill,        href: '/booking', features: ['Chronic prescription renewals', 'Medication reviews', 'Treatment monitoring', 'Patient medication education', 'Dispensing services (where applicable)'] },
+    { slug: 'convenience',         title: 'Patient Convenience Services', desc: 'Care that fits your life — easy booking, telehealth and continuity from clinic to hospital and back.',   Icon: CalendarCheck, href: '/booking', features: ['Online appointment booking', 'Telephonic consultations', 'Follow-up & hospital referral coordination', 'Patient transport assistance', 'Continuity of care, clinic to hospital'] },
   ];
 
   return (
@@ -70,13 +71,13 @@ export default function ServicesPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
-              Vein & Aesthetic{' '}
-              <span className="text-gradient">Specialists</span>
+              Complete Care,{' '}
+              <span className="text-gradient">One Practice</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-silver text-lg max-w-2xl mx-auto">
-              Expert vein treatment and aesthetic services delivered with medical excellence and patient care.
+              From everyday GP visits to IV wellness drips, mental health and occupational health — comprehensive care delivered with medical excellence.
             </p>
           </FadeIn>
         </div>
@@ -95,8 +96,8 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[
-              { src: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', title: 'Vein Treatments',    sub: 'Advanced minimally invasive procedures' },
-              { src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', title: 'Aesthetic Services', sub: 'Professional cosmetic treatments' },
+              { src: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', title: 'Primary Care',       sub: 'GP consultations & everyday medicine' },
+              { src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', title: 'IV Wellness Lounge', sub: 'Custom nutritional drips & hydration' },
             ].map((img, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <div className="relative h-80 rounded-2xl overflow-hidden border border-graphite group">
@@ -137,8 +138,9 @@ export default function ServicesPage() {
             {services.map((s, i) => (
               <FadeIn key={i} delay={i * 0.07}>
                 <Link
+                  id={s.slug}
                   href={s.href}
-                  className="group relative card-dark p-7 hover:border-gold-bright/30 transition-all duration-300 hover:-translate-y-1 block h-full"
+                  className="group relative card-dark p-7 hover:border-gold-bright/30 transition-all duration-300 hover:-translate-y-1 block h-full scroll-mt-24"
                 >
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold/0 to-gold/0 group-hover:from-gold/5 group-hover:to-gold/5 transition-all duration-500" />
                   <div className="relative z-10">
@@ -158,7 +160,7 @@ export default function ServicesPage() {
                       ))}
                     </ul>
                     <div className="flex items-center gap-2 text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0">
-                      Learn more
+                      Book this
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -192,7 +194,7 @@ export default function ServicesPage() {
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-2xl font-bold text-white">Dr Sesing</h3>
-                  <p className="text-white/80 text-sm mt-1">Vein & Aesthetic Specialist</p>
+                  <p className="text-white/80 text-sm mt-1">General Practitioner</p>
                 </div>
               </div>
             </FadeIn>
@@ -208,13 +210,13 @@ export default function ServicesPage() {
                 Expert Care from <span className="text-gradient-subtle">Dr Sesing</span>
               </h2>
               <p className="text-silver leading-relaxed mb-10">
-                With over 15 years of experience in vein treatment and aesthetic procedures, Dr Sesing brings expertise, compassion, and cutting-edge techniques to every patient consultation.
+                With over 15 years of experience in general medicine and primary care, Dr Sesing brings expertise, compassion, and a whole-person approach to every patient consultation.
               </p>
               <div className="space-y-4 mb-10">
                 {[
-                  { Icon: Stethoscope, title: 'Minimally Invasive Specialist', desc: 'Expert in walk-in, walk-out vein procedures' },
-                  { Icon: HeartPulse,  title: 'Patient-Centred Approach',      desc: 'Your comfort and results are our priority' },
-                  { Icon: TrendingUp,  title: 'Proven Track Record',           desc: '1000+ successful treatments performed' },
+                  { Icon: Stethoscope, title: 'Primary-Care Expertise', desc: 'GP consultations, chronic care and screenings' },
+                  { Icon: HeartPulse,  title: 'Patient-Centred Approach', desc: 'Your comfort and wellbeing come first' },
+                  { Icon: TrendingUp,  title: 'Whole-Family Care',       desc: 'Continuity of care for you and your loved ones' },
                 ].map(({ Icon, title, desc }, i) => (
                   <motion.div
                     key={i}
